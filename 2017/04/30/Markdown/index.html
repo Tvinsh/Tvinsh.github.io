@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+	<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.css">
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="/tags/demo" title="{1+1>2}" class="false"><img src="/image/design/code.svg">demo</a>
+	<a href="/tags/life" class="false"><img src="/image/design/feel.svg">生活</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="/tags/photo" class="false"><img src="/image/design/photo.svg">photo</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">about</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p>今天终于把博客搭建好了，希望能坚持记录点东西，让技术和生活都有一些沉淀。<br>开始正文</p>
+<blockquote>
+<p> 标题 </p>
+</blockquote>
+<p>Markdown 支持两种标题的语法，类 Setext 和类 atx 形式。</p>
+<p>类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），任何数量的 = 和 - 都可以有效果。例如：</p>
+<p>【效果】</p>
+<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><p>【语法】</p>
+<pre><code>```
+这是一级标题
+=============
+
+这是二级标题
+-------------
+```
+</code></pre><p>类 Atx 形式则是在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶，例如：</p>
+<p>【效果】</p>
+<h1 id="这是一级标题-1"><a href="#这是一级标题-1" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题-1"><a href="#这是二级标题-1" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><p>【语法】</p>
+<pre><code>```
+# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+```
+</code></pre><blockquote>
+<p> 文本</p>
+</blockquote>
+<p>文本的显示形式可分为粗体、斜体两种，通过在文本前后输入若干个*。</p>
+<p>【效果】</p>
+<p><strong>这是粗体</strong><br><em>这是斜体</em><br><strong><em>这是斜体+粗体</em></strong></p>
+<p>【语法】</p>
+<pre><code>```
+**这是粗体**
+*这是斜体*
+***这是斜体+粗体***
+```
+</code></pre><blockquote>
+<p> 图片</p>
+</blockquote>
+<p>在hexo/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为/img/图片名称，或者使用微博图床。</p>
+<p>【效果】</p>
+<p><img src="/img/markdown.jpg" alt="测试图片"></p>
+<p>【语法】</p>
+<pre><code>```
+![图片内容](图片链接)
+```
+</code></pre><blockquote>
+<p> 链接</p>
+</blockquote>
+<p>链接的语法与图片类似，只要在图片的基础上去掉!即可。</p>
+<p>【效果】</p>
+<p><a href="https://github.com/Tvinsh" target="_blank" rel="noopener">这是我的github主页</a></p>
+<p>【语法】</p>
+<pre><code>```
+[这是我的github主页](https://github.com/Tvinsh)
+```
+</code></pre><blockquote>
+<p> 列表</p>
+</blockquote>
+<p>列表可分为有序列表和无序列表。</p>
+<p>无序列表使用星号、加号或是减号作为列表标记：</p>
+<p>【效果】</p>
+<ul>
+<li><strong>星号</strong>实现的列表</li>
+</ul>
+<ul>
+<li><strong>减号</strong>实现的列表</li>
+</ul>
+<ul>
+<li><strong>加号</strong>实现的列表</li>
+</ul>
+<p>【语法】</p>
+<pre><code>```
+* **星号**实现的列表
+
+- **减号**实现的列表
+
++ **加号**实现的列表
+```
+</code></pre><p>有序列表则使用数字接着一个英文句点：</p>
+<p>【效果】</p>
+<ol>
+<li><p>这是有序列表</p>
+</li>
+<li><p>注意是英文符号</p>
+</li>
+<li><p>注意符号和文字之间保留一个空格</p>
+</li>
+</ol>
+<p>【语法】</p>
+<pre><code>```
+1. 这是有序列表
+
+2. 注意是英文符号
+
+3. 注意符号和文字之间保留一个空格
+```
+</code></pre><p>很重要的一点是，你在列表标记上使用的数字并不会影响输出的 HTML 结果，上面的列表所产生的 HTML 标记为：</p>
+<pre><code>```
+122. 这是有序列表
+
+233. 注意是英文符号
+
+3. 注意符号和文字之间保留一个空格
+```
+</code></pre><p>你都会得到完全相同的 HTML 输出。重点在于，你可以让 Markdown 文件的列表数字和输出的结果相同，或是你懒一点，你可以完全不用在意数字的正确性。</p>
+<p>另外，如果列表项目间用空行分开，在输出 HTML 时 Markdown 就会将项目内容用 </p><p> 标签包起来，举例来说：</p>
+<pre><code>```
+* 注意是英文符号
+
+* 注意符号和文字之间保留一个空格
+```
+</code></pre><p>会被转换成：</p>
+<pre><code>```
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;注意是英文符号&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;注意符号和文字之间保留一个空格&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+```
+</code></pre><blockquote>
+<p> 引用</p>
+</blockquote>
+<p>使用类似 email 中用 &gt; 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 &gt; ：</p>
+<p>【效果】</p>
+<blockquote>
+<p>是的，本文从开始时就出现的这个样式，就是引用。。。。。</p>
+</blockquote>
+<p>【语法】</p>
+<pre><code>```
+&gt; 是的，本文从开始时就出现的这个样式，就是引用。。。。。
+```
+</code></pre><blockquote>
+<p> 代码区块</p>
+</blockquote>
+<p>和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 &lt; pre&gt; 和 &lt; code&gt; 标签来把代码区块包起来。</p>
+<p>在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以。</p>
+<p>【效果】</p>
+<pre><code>这是一个区块
+</code></pre><p>行内代码块用法为在文字内容开始与结尾添加”`”。</p>
+<p>【效果】</p>
+<p><code>这是行内代码块</code></p>
+<p>【语法】</p>
+<pre><code>```
+`这是行内代码块`
+```
+</code></pre><p>加强代码块是代码块的增强版，省去了多行代码每行输入Tab键的烦恼，只要在多行代码的开始和结尾输入｀｀｀即可。</p>
+<p>【效果】</p>
+<pre><code>```
+这个是加强代码块
+用起来比tab键方便
+```
+</code></pre><p>【语法】</p>
+<pre><code>```
+｀｀｀
+这个是加强代码块
+用起来比tab键方便
+｀｀｀
+```
+</code></pre><blockquote>
+<p>表格</p>
+</blockquote>
+<p>表格的语法主要用到的符号为|、-、:，效果如下：</p>
+<p>【效果】</p>
+<table>
+<thead>
+<tr>
+<th>默认</th>
+<th style="text-align:center">居中</th>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>支持斜体</em></td>
+<td style="text-align:center"><strong>粗体</strong></td>
+<td style="text-align:left"><strong><em>斜体+粗体</em></strong></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td># 不支持标题</td>
+<td style="text-align:center"><a href="https://github.com/Tvinsh" target="_blank" rel="noopener">支持链接</a></td>
+<td style="text-align:left"><img src="" alt="支持图片"></td>
+<td style="text-align:right"><code>支持行内代码块</code></td>
+</tr>
+</tbody>
+</table>
+<p>【语法】</p>
+<pre><code>```
+</code></pre><table>
+<thead>
+<tr>
+<th>默认</th>
+<th style="text-align:center">居中</th>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>支持斜体</em></td>
+<td style="text-align:center"><strong>粗体</strong></td>
+<td style="text-align:left"><strong><em>斜体+粗体</em></strong></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td># 不支持标题</td>
+<td style="text-align:center"><a href="https://github.com/Tvinsh" target="_blank" rel="noopener">支持链接</a></td>
+<td style="text-align:left"><img src="https://pic3.zhimg.com/a9a648c96_m.jpg" alt="支持图片"></td>
+<td style="text-align:right"><code>支持行内代码块</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>```
+</code></pre><blockquote>
+<p>分隔线</p>
+</blockquote>
+<p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<p>【效果】</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>【语法】</p>
+<pre><code>```
+</code></pre><hr>
+<pre><code>***
+
+*****
+
+- - -
+
+---------------------------------------
+```
+</code></pre><blockquote>
+<p> 删除线</p>
+</blockquote>
+<p>使用波浪号，效果如下：</p>
+<p>【效果】</p>
+<p><del>删除线</del></p>
+<p>【语法】</p>
+<pre><code>```
+~~删除线~~
+```
+</code></pre><blockquote>
+<p> 反斜杠</p>
+</blockquote>
+<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<p>【效果】</p>
+<p>\ 反斜线<br>` 反引号<br>* 星号<br>_ 底线<br>{} 花括号<br>[] 方括号<br>() 括弧<br>#  井字号<br>+  加号<br>-  减号<br>.  英文句点<br>!  惊叹号</p>
+<p>【语法】</p>
+<pre><code>```
+\\ 反斜线
+\` 反引号
+\* 星号
+\_ 底线
+\{} 花括号
+\[] 方括号
+\() 括弧
+\#  井字号
+\+  加号
+\-  减号
+\.  英文句点
+\!  惊叹号
+```
+</code></pre></p>
+	</div>
+</article>
+	</div>
+</body>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+</html>
