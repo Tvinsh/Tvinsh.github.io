@@ -178,10 +178,10 @@ a.a7 {
     background: #ccc;
     color: #333;
     display: block;
-    // -webkit-margin-before: 0;
+    /* // -webkit-margin-before: 0;
     // -webkit-margin-after: 0;
     // -webkit-margin-start: 0;
-    // -webkit-margin-end: 0;
+    // -webkit-margin-end: 0; */
 }
 .p-text ul {
     padding: 0;
@@ -227,7 +227,12 @@ table td {
     color: #000;
 }
 
+.p {
+    margin: 0 1rem;
+    padding: 0 1rem;
+}
 
-
-
-
+.p-text p  a{
+    color: #5A77E8;
+    text-decoration: underline;
+}
