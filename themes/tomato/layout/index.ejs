@@ -1,0 +1,25 @@
+
+<% page.posts.each(function (post) { %>
+	<article class="p">
+		<a href="<%- url_for(post.path) %>">
+			<h2 class="p-title many"><%= post.title %></h2>
+			<ul class="p-meta">
+			<li><time><%- date(post.date, "YYYY-MM-DD") %></time></li>
+			</ul>
+			<div class="cover"><img src="<%= post.photos %>" class="h" onload="this.className=''"></div>
+		</a>
+		<div class="p-text">
+			<p><%- post.excerpts %></p>
+			<p class="more">
+				<a href="#">- 查看更多 -</a>
+			</p>
+		</div>
+	</article>
+<% }) %>
+<%- partial('_partial/paginator') %>
+
+
+
+
+
+

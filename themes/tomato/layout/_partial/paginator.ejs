@@ -1,0 +1,9 @@
+<% if (page.total > 1){ %>
+  <nav class="page-nav">
+    <%- paginator({
+      prev_text: "&laquo; 前番",
+      show_all:true,
+      next_text: "后番 &raquo;"
+    }) %>
+  </nav>
+<% } %>

@@ -1,0 +1,37 @@
+<main id="tag">
+        <div class="content">
+          <% 
+            var years = {};
+            page.posts.sort('date').reverse().forEach(function(post){
+                var year = post.date.year()
+                if(years[year]===undefined){
+                    years[year] = [];
+                }
+                years[year].push(post);
+            });
+          %>    
+          <% Object.keys(years).reverse().forEach(function(year){  %>
+            <div class="year-list">
+              <h3 class="pd-year"><%= year %></h3>
+              <ul class="pd-ul">
+                <% years[year].map(function(post){  %>
+                  <li class="pd-li">
+                    <div class="pd-li-layout">
+                      <div class="pd-li-layout-l">
+                          <a href="<%- config.root %><%- post.path %>" class="pd-link">
+                            <span class="pd-title">
+                                <%- post.title ? post.title : '无标题' %>
+                            </span>
+                          </a>
+                      </div>
+                      <div class="pd-li-layout-r">
+                          <time class="pd-time"><%= post.date.format('YYYY/MM/DD') %></time>
+                      </div>
+                    </div>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>    
+        </div>
+      </main>
