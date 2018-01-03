@@ -20,6 +20,9 @@
 .pd-ul {
     padding: 1rem 1rem;
 }
+.pd-li {
+    list-style: none;
+}
 
 .pd-li-layout {
     font-size: .75rem;
