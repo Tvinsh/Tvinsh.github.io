@@ -17,6 +17,10 @@
     border-left: 5px solid #65c541
 }
 
+a:hover {
+    color: red;
+}
+
 .pd-ul {
     padding: 1rem 1rem;
 }

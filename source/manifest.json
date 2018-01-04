@@ -1,0 +1,25 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "tomato",
+  "scope": "/",
+  "display": "browser",
+  "start_url": "https://2fz1.me/",
+  "short_name": "tomato",
+  "theme_color": "#313131",
+  "description": "this is tomato's blog",
+  "orientation": "any",
+  "background_color": "#313131",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "../favicon.png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "../favicon.png",
+      "sizes": "512x512"
+    }
+  ]
+}
