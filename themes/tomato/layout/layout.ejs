@@ -21,6 +21,12 @@
 	<%- css('css/i.css') %>
 	<%- css('css/cmts.css') %>
 	<%- css('css/arc.css') %>
+	<link rel="canonical" href="<%- page.permalink %>">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
 </head>
 <body>
 	<%- partial('_partial/nav') %>

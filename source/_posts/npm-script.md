@@ -1,12 +1,12 @@
 ---
 title: npm scripts 不完全总结
-photo: http://ww2.sinaimg.cn/mw1024/a15b4afely1fjbzuwk8ifg21400k0jrp
+photo: /img/npm.png
 date: 2018-01-19 18:50:19
-excerpts: npm scripts 不完全总结
+excerpts: npm 允许在package.json文件里面，使用scripts字段定义脚本命令。
 tags: 'js'
 ---
 
-![图片内容](http://ww2.sinaimg.cn/mw1024/a15b4afely1fjbzuwk8ifg21400k0jrp)
+![图片内容](/img/npm.png)
 
 # npm scripts 不完全总结
 
@@ -268,7 +268,7 @@ npm completion >> ~/.zshrc
 
 当npm script非常多并且非常复杂的时候，将所有脚本全部放在 package.json 中就不是很合适，我们可以借助[scripty](https://github.com/testdouble/scripty)这个包将 npm script 剥离到单独的文件中。
 
-做法就是，创建 scripts 目录，在目录中创建与命令名字对应的执行脚本，命令中有```:```的则通过子文件夹的形式创建，然后在 package.json 中将命令脚本统一换成```scripty```
+做法就是，创建 scripts 目录，在目录中创建与命令名字对应的执行脚本，命令中有  ```:```  的则通过子文件夹的形式创建，然后在 package.json 中将命令脚本统一换成       ```scripty```
 
 如下，比如
 ```json
@@ -277,3 +277,107 @@ npm completion >> ~/.zshrc
 }
 ```
 则需要在 scripts 目录下的 build 目录中创建名称为 dev 的执行脚本，路径为 scripts/build/dev
+
+### 文件变化时自动运行 npm script
+
+我们都知道 gulp 中的 watch 在开发中非常实用，其实如果不借助 gulp， 在 npm script 也能实现文件变化后自动运行 npm 脚本
+
+我们需要借助 onchange 这个包，onchange 可以方便地让我们在文件被修改、添加、删除时运行需要的命令。
+
+```json
+"scripts": {
+  ...
+  "watch:css": "onchange 'src/scss/*.scss' -- npm run build:css",
+  "watch:js": "onchange 'src/js/*.js' -- npm run build:js",
+}
+```
+
+onchange需要你传入想要监控的文件路径（字符串），这里我们传的是SCSS和JS源文件，我们想要运行的命令跟在 ```--``` 之后，这个命令当路径内的文件发生增删改的时候就会被立即执行。
+
+### 在 git 钩子中执行 npm script
+
+在项目中，我们可以通过 npm script 为本地仓库配置了 pre-commit、pre-push 钩子检查
+
+当然，我们也可以利用 IDE 里的各种检查， 但是对于整个团队，提交之前设置一些检查还是比较稳妥的，有些同学习惯用```-n``` 来跳过本地检查， 所以更稳妥的做法是在远程仓库接收代码之前也做一次检查
+
+npm 上一已经有很多相关的包了，[husky](https://github.com/typicode/husky)是其中比较好用的一个，husky主要的工作就是替换掉 ```.git/hooks``` 里面的一些钩子。
+
+还有另外的问题，如果直接在 pre-commit 中 lint 所有的文件，每次提交前需要检查所有的代码，可能会比较慢；另外一点，如果是在老的项目中引入lint，或者是团队合作，有的同学直接用 ```-n``` 将代码提交了，你再提交的时候，可能会出现一片红，几百的错误都有可能，这时候估计大多数人内心是崩溃的
+
+其实我们可以通过 [lint-staged](https://github.com/okonet/lint-staged)来缓解这个问题，这个包有个非常 666666 的功能，就是只 Lint 改动的
+
+```json
+"scripts": {
+    "precommit": "lint-staged",
+    "prepush": "npm run test",
+    "lint": "npm-run-all --parallel lint:*"
+},
+"lint-staged": {
+    "*.js": "eslint",
+    "*.less": "stylelint"
+}
+```
+
+lint-staged 还提供了自动修复错误的配置
+
+```json
+"scripts": {
+    "precommit": "lint-staged"
+},
+"lint-staged": {
+    "src/**/*.js": ["eslint --fix", "git add"]
+}
+```
+
+以及自动格式化代码的配置
+
+```json
+"scripts": {
+    "precommit": "lint-staged"
+},
+"lint-staged": {
+    "src/**/*.js": ["prettier --write", "git add"]
+}
+```
+
+### 实现构建工作流
+
+一个简单项目中可能的依赖关系为
+> 1. css、html 文件中引用了图片
+> 2. html 文件中引用了 css、js
+
+为了不出错，我们的构建过程大致如下：
+
+> 1. 压缩图片
+> 2. 编译 less、压缩 css
+> 3. 编译、压缩 js
+> 4. 给图片加版本号并替换 js、css 中的引用
+> 5. 给 js、css 加版本号并替换 html 中的引用
+
+这里忽略掉js之间的相互引用，以及一些combo的情景
+
+这里会用到 shell 里面的管道操作符 | 和输出重定向 >，管道操作符 | 以流的形式依次执行命令，输出重定向 > 指将文件输出到指定文件夹中
+
+流程大概是:
+
+> 1. 用[imagemin-cli](https://github.com/imagemin/imagemin-cli)压缩图片
+> 2. 用 lessc 编译 less，用 [cssmin](https://www.npmjs.com/package/cssmin)压缩
+> 3. 用[uglifyjs](https://github.com/mishoo/UglifyJS2)压缩js
+> 4. 用[hashmark](https://github.com/keithamus/hashmark)自动添加版本号，用[replaceinfiles](https://github.com/songkick/replaceinfiles)自动完成引用替换
+
+大概如下：
+```json
+{
+    "client:static-server": "http-server client/",
+    "prebuild": "rm -rf dist && mkdir -p dist/{images,styles,scripts}",
+    "build": "scripty",
+    "build:images": "scripty",
+    "build:scripts": "scripty",
+    "build:styles": "scripty",
+    "build:hash": "scripty"
+}
+```
+
+本文只是大概介绍了 npm script 一些用法，其实还有很多比较强大和比较高级的用法待大家去发掘
+
+本文是小书[用 npm script 打造超溜的前端工作流](https://juejin.im/book/5a1212bc51882531ea64df07)读后总结，更多内容可参考原书
