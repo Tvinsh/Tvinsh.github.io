@@ -243,3 +243,22 @@ table td {
     color: #5A77E8;
     text-decoration: underline;
 }
+
+.pvcount {
+    margin: 25px auto;
+    text-align: center;
+    display: block;
+    position: relative;
+    left: 50%;
+    margin-left: -72px;
+    color: #666;
+}
+.pagecount {
+    margin-left: -105px;
+    margin-top: 40px;
+}
+
+.pvnumber {
+    font-size: 16px;
+    color: blue;
+}
