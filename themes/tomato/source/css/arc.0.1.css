@@ -247,15 +247,16 @@ table td {
 .pvcount {
     margin: 25px auto;
     text-align: center;
-    display: block;
     position: relative;
     left: 50%;
     margin-left: -72px;
     color: #666;
+    display: none !important;
 }
 .pagecount {
     margin-left: -105px;
     margin-top: 40px;
+    display: none !important;
 }
 
 .pvnumber {
