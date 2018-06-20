@@ -1,6 +1,7 @@
 ---
 title: 前端乱炖
 photo: /img/css3.png
+date: 2018-06-18 19:50:19
 excerpts: 记录一些前端笔记，不定时更新
 tags: js
 ---
@@ -11,7 +12,7 @@ tags: js
 
 ------
 
-#### 怎么画一条0.5px的边
+## 怎么画一条0.5px的边
 
 参考[人人博客](https://fed.renren.com/2018/03/24/half-of-one-px/)，万能方法，能完美兼容ios和安卓，如下
 
@@ -23,10 +24,10 @@ tags: js
 }
 ```
 
-1. 直接设置0.5px，在不同的浏览器会有不同的表现
+1.直接设置0.5px，在不同的浏览器会有不同的表现
 - IOS的Chrome会画出0.5px的边，而安卓(5.0)原生浏览器是不行的
 
-2. 线性渐变linear-gradient
+2.线性渐变linear-gradient
 ```css
 .hr.gradient {
     height: 1px;
@@ -35,7 +36,7 @@ tags: js
 ```
 - 这个效果和scale 0.5的差不多，都是通过虚化线，让人觉得变细了
 
-3. boxshadow
+3.boxshadow
 ```css
 .hr.boxshadow {
     height: 1px;
@@ -45,7 +46,7 @@ tags: js
 ```
 - 在Chrome和Firefox都非常完美，但是Safari不支持小于1px的boxshadow
 
-4. svg
+4.svg
 ```css
 .hr.svg {
     background: none;
@@ -56,7 +57,7 @@ tags: js
 ```
 也能完美适用于ios和安卓。
 
-#### 圆环放大的动画
+## 圆环放大的动画
 
 参考[人人博客](https://fed.renren.com/2017/12/17/svg-animation/)，如下
 ```html
@@ -69,3 +70,25 @@ tags: js
 ```
 
 ![svg](/img/svg.png)
+
+## tips
+
+1.void 后面你随便跟上一个表达式，返回的都是 undefined， 且比 undefined 占用的字节少， 并且不能被重写；类似的还有 ```0.._```
+
+2.判断是不是数组
+
+```js
+function isArray(a) {
+  return Array.isArray ? Array.isArray(a) : Object.prototype.toString.call(a) === '[object Array]';
+}
+```
+
+3.判断是否为Dom元素
+
+```js
+function(obj) {
+  // 确保 obj 不是 null 
+  // 并且 obj.nodeType === 1
+  return !!(obj && obj.nodeType === 1);
+}
+```

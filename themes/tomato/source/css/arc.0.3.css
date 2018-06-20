@@ -190,6 +190,11 @@ a.a7 {
     // -webkit-margin-start: 0;
     // -webkit-margin-end: 0; */
 }
+.content .p-text ol ul {
+    background: #ccc;
+    color: #333;
+    display: block;
+}
 .p-text ul {
     padding: 0;
 }
