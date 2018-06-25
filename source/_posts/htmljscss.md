@@ -1,12 +1,12 @@
 ---
 title: 前端乱炖
-photo: /img/css3.png
+photo: /img/js.jpg
 date: 2018-06-18 19:50:19
 excerpts: 记录一些前端笔记，不定时更新
 tags: js
 ---
 
-![图片内容](/img/css3.png)
+![图片内容](/img/js.jpg)
 
 # 前端乱炖，不定时更新
 
