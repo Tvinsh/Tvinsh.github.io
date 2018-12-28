@@ -104,35 +104,35 @@ positionY = （容器高度-图片高度）*perventY；
 
 1.某模块，文字少的时候居中显示，多于一行的时候居左显示；
 
-{% iframe https://codepen.io/Tvinsh/full/NyKPQv/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/NyKPQv/ 100% 300 %}
 
 2.利用 max-height实现展开收起,其中 max-height的值要比展开的内容高度大，因为max-height值比height计算值大的时候，元素高度就是height的计算高度，但是也不能太大，否则会感觉动画延迟了；
 
-{% iframe https://codepen.io/Tvinsh/full/GGGOmv/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/GGGOmv/ 100% 300 %}
 
 3.图片没加载时显示alt信息，当图片有了src属性后，就从普通元素变成了替换元素，此时 ::before, ::after 就都不支持了；
 
-{% iframe https://codepen.io/Tvinsh/full/gKKXBe/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/gKKXBe/ 100% 300 %}
 
 4.可以通过content属性给img设置图片，也可使普通元素变成替换元素,甚至可以给非img标签添加图片内容，比较实用的场景是logo，我们一般使用h1标签加背景图，现在可以用这个方法试试了,虽然表面上文字被替换了，实际上搜索引擎抓取的还是原始的文字信息;
 
-{% iframe https://codepen.io/Tvinsh/full/ERRbzy/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/ERRbzy/ 100% 300 %}
 
 5.伪元素辅助实现两端对齐，原理是:before辅助实现底对齐，:after辅助实现两端对齐,缺点是写的时候，有些地方不能换行或空格；
 
-{% iframe https://codepen.io/Tvinsh/full/vrrpGj/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/vrrpGj/ 100% 300 %}
 
 6.动态加载中的效果，需要使用::before 加上 display 为 block，为了在高版本浏览器下将原来的3个点推到最下面
 
-{% iframe https://codepen.io/Tvinsh/full/OEEzWd/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/OEEzWd/ 100% 300 %}
 
 7.content 计数器，其中：counter-reset设置计数器的名字并设置从哪个数开始计数，默认是0；counter-increment计数器递增,counter()方法，显示计数；
 
-{% iframe https://codepen.io/Tvinsh/full/YvvjwW/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/YvvjwW/ 100% 300 %}
 
 8.利用温和的padding，内联元素的padding尺寸有效，但是对布局没有产生影响，我们可以用来增加点击区域的大小，提升用户体验；也可以制作分隔线；
 
-{% iframe https://codepen.io/Tvinsh/full/mKKjrW/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/mKKjrW/ 100% 300 %}
 
 9.列表块两端对齐，一行显示3个，中间有2个20像素的间隙，可以使用css3:
 ```css
@@ -159,11 +159,11 @@ ul li {
 
 10.绝对或固定定位和text-align实现主窗体右侧的返回顶部
 
-{% iframe https://codepen.io/Tvinsh/full/ERRdrr/ 100% 300 %}
+{% iframe https://codepen.io/Tvinsh/embed/ERRdrr/ 100% 300 %}
 
 11.text-align:justify实现两端对齐，需要有分隔点，还要超过一行，此时非最后一行会两端对齐,此时可以利用空标签进行占位，使得有效标签非最后一行
 
-{% iframe https://codepen.io/Tvinsh/full/QxxYQg/
+{% iframe https://codepen.io/Tvinsh/embed/QxxYQg/
 100% 300 %}
 
 
