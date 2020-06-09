@@ -1,5 +1,6 @@
 ---
 title: git使用中的撤销
+date: 2018-08-08 11:50:20
 photo: /img/git.png
 excerpts: 平时工作中使用git比较多，但是基本上都是使用主要的几个命令，其实git中有很多命令。 
 tags: git

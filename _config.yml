@@ -58,6 +58,17 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+archive_generator:
+  yearly: true
+  monthly: true
+  per_page: 0
+
+category_generator:
+  per_page: 0
+
+tag_generator:
+   per_page: 0
+
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in

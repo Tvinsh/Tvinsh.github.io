@@ -1,5 +1,6 @@
 ---
 title: AMP 小结
+date: 2017-12-22 13:50:19
 photo: /img/amp.png
 excerpts: AMP 全称 Accelerated Mobile Pages,顾名思义是为了加速移动网络的网页加载从而提升体验。 
 tags: mobile

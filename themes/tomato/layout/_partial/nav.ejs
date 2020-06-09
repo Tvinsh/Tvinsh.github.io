@@ -3,8 +3,8 @@
 	<a href="<%- url_for('/archives/') %>" title="连续不断的奇迹" class="<%- is_current('/archives') %>" ><%- image_tag('image/design/nichijou.svg') %>归档</a>
 	<a href="<%- url_for('/tags/') %>" title="{1+1>2}" class="<%- is_current('/tags') && !is_current('/tags/demo') && !is_current('/tags/life') && !is_current('/tags/photo') %> eltag" ><%- image_tag('image/design/tag.svg') %>tag</a>
 	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="<%- is_current('/tags/demo') %>"><%- image_tag('image/design/code.svg') %>Demo</a>
-	<a href="<%- url_for('/tags/life') %>" class="<%- is_current('/tags/life') %>"><%- image_tag('image/design/feel.svg') %>生活</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="<%- is_current('/tags/life') %>"><%- image_tag('image/design/feel.svg') %>图片</a>
 	<!-- <a href="#!home" ><%- image_tag('image/design/vsco.svg') %>VSCO</a> -->
-	<a href="<%- url_for('/tags/photo') %>" class="<%- is_current('/tags/photo') %>"><%- image_tag('image/design/photo.svg') %>分享</a>
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="<%- is_current('/tags/photo') %>"><%- image_tag('image/design/photo.svg') %>分享</a>
 	<a href="<%- url_for('/about') %>" class="<%- is_current('/about') %>"><%- image_tag('image/design/link.svg') %>About</a>
 </nav>

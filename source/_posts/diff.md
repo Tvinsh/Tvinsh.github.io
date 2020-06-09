@@ -1,5 +1,6 @@
 ---
 title: virtual dom 和 diff
+date: 2018-05-22 10:50:19
 photo: /img/dom.jpg
 excerpts: 简单介绍下git的diff 过程 
 tags: vue
