@@ -1,0 +1,278 @@
+.content {
+    padding: 0 1.5rem;
+}
+
+.pd-year {
+    font-size: 1.5rem;
+}
+
+.pd-year::before {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1em;
+    content: '';
+    vertical-align: -.22ex;
+    color: transparent;
+    border-left: 5px solid #65c541
+}
+
+a:hover {
+    color: red;
+}
+
+.pd-ul {
+    padding: 1rem 1rem;
+}
+.pd-li {
+    list-style: none;
+}
+
+.pd-li-layout {
+    font-size: .75rem;
+    line-height: 1.25rem;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0.75rem 1rem;
+    -webkit-transition: padding-left .15s;
+    transition: padding-left .15s;
+}
+
+.pd-li-layout-l {
+    float: left;
+}
+
+.pd-li-layout-r {
+    float: right;
+}
+
+.pd-link {
+    display: block;
+}
+
+.pd-title {
+    width: 70%;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.pd-time {
+    color: #969ba3;
+    font-size: 1rem;
+}
+
+/* tags */
+
+a.a0 {
+    background: #8633CD;
+}
+a.a1 {
+    background: #C93635;
+}
+a.a2 {
+    background: #56BFF3;
+}
+a.a3 {
+    background: #EC5B2D;
+}
+a.a4 {
+    background: #F9D84E;
+}
+a.a5 {
+    background: #60CB90;
+}
+a.a6 {
+    background: #5A77E8;
+}
+a.a7 {
+    background: #7AABD2;
+}
+
+.book-toplist {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    background: #c33;
+    z-index: 10;
+    color: #fff;
+}
+
+.content {
+    position: relative;
+}
+
+.module {
+    position: relative;
+    overflow: hidden;
+    margin: .75rem 0;
+    background-color: #fff;
+}
+
+.book-toplist-title {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 50%;
+    margin-top: -1.4rem;
+    -webkit-transform: scaleY(1.2);
+    transform: scaleY(1.2);
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.book-ol {
+    overflow: hidden;
+    margin-left: 7.5rem;
+    padding-left: 2.125rem;
+    padding: 0;
+    list-style: none;
+}
+
+.book-li {
+    /* box-shadow: 0 1px #666; */
+    display: list-item;
+    text-align: -webkit-match-parent;
+    position: relative;
+}
+
+.book-layout {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    margin-left: 10rem;
+    padding: .375rem 1rem .375rem 2.375rem;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    -webkit-transition: padding-left .15s;
+    transition: padding-left .15s;
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}
+
+.book-li + .book-li {
+    border-top: 1px solid #666;
+}
+
+.book-title {
+    line-height: 1.4;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.5rem;
+}
+
+
+/* code */
+.p-text ol, .p-text ul {
+    margin-left: 28px;
+    color: #5e6d82;
+    display: block;
+}
+/* .content .p-text ol, .content .p-text ul {
+    background: #ccc;
+    color: #333;
+    display: block;
+} */
+.p-text ul {
+    padding: 0;
+}
+
+.p-text ol li {
+    margin: 2em 0;
+}
+.p-text ul li {
+    margin: 2em 0;
+}
+
+.p-text  code {
+    color: #d14;
+    font-weight: normal;
+}
+
+.p-text blockquote {
+    padding: 8px 16px;
+    background-color: #ecf8ff;
+    border-radius: 4px;
+    border-left: 5px solid #50bfff;
+    margin: 20px 0;
+}
+
+.p-text p {
+    margin: 1em 0;
+    line-height: 2em;
+    color: #5e6d82;
+    font-size: 125%;
+    word-break: break-all;
+}
+
+.p-text h1, .p-text h2, .p-text h3, .p-text h4, .p-text h5 {
+    color: #363;
+    border-radius: 4px;
+    border-left: 5px solid #50bfff;
+    padding-left: 10px;
+    margin: 30px 0px;
+}
+
+table {
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #000;
+    cellspacing: 0;
+}
+table td {
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.content .p-text ol,ul {
+    background: #fff;
+    color: #000;
+}
+
+.p {
+    margin: 0 1rem;
+    padding: 0 1rem;
+}
+
+.p-text p  a{
+    color: #5A77E8;
+    text-decoration: underline;
+}
+
+.pvcount {
+    margin: 25px auto;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    margin-left: -72px;
+    color: #666;
+    display: none !important;
+}
+.pagecount {
+    margin-left: -105px;
+    margin-top: 40px;
+    display: none !important;
+}
+
+.pvnumber {
+    font-size: 16px;
+    color: blue;
+}

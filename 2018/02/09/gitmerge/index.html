@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/02/09/gitmerge/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/git.png" alt="git"></p>
+<h1 id="git从其他分支merge个别文件"><a href="#git从其他分支merge个别文件" class="headerlink" title="git从其他分支merge个别文件"></a>git从其他分支merge个别文件</h1><hr>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>git 使用的过程中，有时候我们可能会有这样的需求， 别的分支上有部分文件是我们当前分支需要的，但是如果使用常规的merge，就会将别的分支的内容全部合并过来，这不是我们想要的，下面简单介绍一个小技巧可以实现只合并指定的文件。</p>
+<h3 id="场景一"><a href="#场景一" class="headerlink" title="场景一"></a>场景一</h3><p>目前有master 和 develop 两个分支，develop上开发了三个功能，分别是 function1.js , function2.js , function3.js 实现的, master上是没有这些功能的，也就没有这三个文件，由于某些原因，现在需要将 function1.js 这个功能先上线，于是我们需要将 function1.js merge到 master 上，但是 function2.js 和 function3.js 不能一起 merge 过来。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><pre><code class="git">    git checkout source_branch &lt;path&gt;...
+</code></pre>
+<p>我们先切换到 master 分支上，也就是要将资源合并过来的分支，然后执行 <code>git checkout develop function1.js</code>,此时我们会发现 master 上已经有了 funciton1.js 了，也就将指定文件合并过来了。</p>
+<p>具体步骤：</p>
+<pre><code class="js">git checkout master  // 先切换到master分支
+
+git checkout develop function1.js // 合并develop上的function1.js
+</code></pre>
+<p>但是有一点要注意，如果当前 master 上已经有了 function1.js 文件，并且开发了一些其他功能，当用以上方法把 develop 上的 function1.js 合并过来的时候，master 上原有的同名文件会被完全覆盖，而不是合并，这肯定是不行的，也就是以下场景。</p>
+<h3 id="场景二"><a href="#场景二" class="headerlink" title="场景二"></a>场景二</h3><p>master 和 develop 上针对 function1 功能开发了不同的模块，develop 上独立开发了 function2 和 function3 功能，现在需要先上掉 function1 和 function2，也就将两个分支上的 function1.js 合并，并且将 develop 上的 function2.js 合并到 master 上。</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>从 master 上切出一个临时分支，将 develop merge 到临时分支，然后切换到 master 上，用上面的 <code>git checkout source_branch &lt;path&gt;</code> 方法将临时分支上的相关文件合并到 master 上。</p>
+<p>具体步骤： </p>
+<pre><code class="js">git checkout master  // 先切换到master分支
+
+git checkout -b master_temp // 从master切一个新的分支
+
+git merge develop // 在 master_temp 上 merge develop 分支, 如果有冲突，解决下冲突，然后 commit 掉
+
+git checkout master // 切回master
+
+git checkout master_temp function1.js function2.js // 合并临时分支上的 function1.js, function2.js
+</code></pre>
+<p>完成～ 在正常开发中，这样的场景可能并不多见，都是做好准备并且根据规范来开发的，既然可能会有这样的场景，还是先记着这个小技巧。</p>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

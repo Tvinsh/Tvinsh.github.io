@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/01/14/amp&pwa/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/amppwa.png" alt="pwa"></p>
+<h1 id="让自己的博客支持-amp-amp-pwa"><a href="#让自己的博客支持-amp-amp-pwa" class="headerlink" title="让自己的博客支持 amp &amp; pwa"></a>让自己的博客支持 amp &amp; pwa</h1><hr>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>最近看了下 amp 和 pwa 的一些介绍，于是查了些资料，给自己的博客加上了 amp 和 pwa 功能，给静态博客加上这些还是比较简单的，社区已经有了很多插件支持了，具体步骤如下</p>
+<h3 id="1-将-http-升级为-https"><a href="#1-将-http-升级为-https" class="headerlink" title="1. 将 http 升级为 https"></a>1. 将 http 升级为 https</h3><p>可以借助 <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">cloudflare</a>的cdn，大概步骤是将你的域名注册商的 dns server 更改成 cloudflare 所提供的，然后在cloudflare 上配置一些dns信息，具体做法可 google， 有很多</p>
+<p>值得一提的是，可以让博客强行跳转到 https， 在 html 模板中加上 </p>
+<pre><code class="html">&lt;link rel=&quot;canonical&quot; href=&quot;&lt;%- page.permalink %&gt;&quot;&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var host = &quot;2fz1.me&quot;;
+    if ((host == window.location.host) &amp;&amp; (window.location.protocol != &quot;https:&quot;))
+        window.location.protocol = &quot;https&quot;;
+&lt;/script&gt;
+</code></pre>
+<p>然后在<code>_config.yml</code>中加上</p>
+<pre><code class="yml">rl: https://2fz1.me
+enforce_ssl: 2fz1.me
+</code></pre>
+<h3 id="2-迁移博客到-amp"><a href="#2-迁移博客到-amp" class="headerlink" title="2. 迁移博客到 amp"></a>2. 迁移博客到 amp</h3><p>网上也有很多做法，由于我地博客是用 hexo 的，于是自然地用了 hexo 插件 <a href="https://github.com/tea3/hexo-generator-amp" target="_blank" rel="noopener">hexo-generator-amp</a>,具体方法可参考插件的文档</p>
+<blockquote>
+<p>TIPs:</p>
+<ol>
+<li>一定要修改文章页的模板，添加link[rel=amphtml]链接，要不然搜索无法找到 AMP 页面</li>
+<li>AMP 页面会自动在head中添加canonical链接回原有的文章页</li>
+</ol>
+</blockquote>
+<p>完成后地效果如下</p>
+<p>搜索结果页： </p>
+<p><img src="/img/blogamp.png" alt="amp"></p>
+<p>amp详情页：</p>
+<p><img src="/img/blogamp2.png" alt="amp"></p>
+<h3 id="3-添加-pwa-功能"><a href="#3-添加-pwa-功能" class="headerlink" title="3. 添加 pwa 功能"></a>3. 添加 pwa 功能</h3><p>搜了下也能发现很多做法，既然有插件，就选了 hexo-offline， 这个插件可以自动生成 pwa 核心 ServiceWorker 代码，然后参考文档在<code>_config.yml</code> 中添加大概如下代码：</p>
+<pre><code class="yml">{
+    # Offline
+    ## Config passed to sw-precache
+    ## https://github.com/JLHwung/hexo-offline
+    offline:
+    maximumFileSizeToCacheInBytes: 10485760
+    staticFileGlobs:
+        - public/**/*.{js,html,css,png,jpg,jpeg,gif,svg,json,xml}
+    stripPrefix: public
+    verbose: true
+    runtimeCaching:
+        # CDNs - should be cacheFirst, since they should be used specific versions so should not change
+        - urlPattern: /*
+        handler: cacheFirst
+        options:
+        origin: cdn.bootcss.com
+}
+</code></pre>
+<p>然后添加 manifest.json 文件，可以参照文档自己写一份，也可以用 <a href="https://app-manifest.firebaseapp.com/" target="_blank" rel="noopener">app-manifest</a>自动生成一份，记得要将 manifest.json 引入你的 html 中</p>
+<p>可以用 chrome 插件 Lighthouse 检测网站对于 pwa 支持的检测报表</p>
+<p>pwa 离线页： </p>
+<p><img src="/img/blogpwa.png" alt="pwa"></p>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

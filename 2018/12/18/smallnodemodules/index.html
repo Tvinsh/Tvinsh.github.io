@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/12/18/smallnodemodules/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/nodemodules.jpg" alt="nodemodules"></p>
+<h1 id="small-node-modules"><a href="#small-node-modules" class="headerlink" title="small node modules"></a>small node modules</h1><hr>
+<p>看了一些小的node模块，发现比较有意思，可以学习下别人的思路，于是决定整理下，持续更新！！</p>
+<blockquote>
+<p>is-positive: Check if something is a positive number</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+module.exports = function (n) {
+    return toString.call(n) === &#39;[object Number]&#39; &amp;&amp; n &gt; 0;
+};
+
+// example
+const isPositive = require(&#39;is-positive&#39;);
+
+isPositive(1);
+//=&gt; true
+
+isPositive(0);
+//=&gt; false
+</code></pre><blockquote>
+<p>user-home: Get the path to the user home directory</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+module.exports = require(&#39;os-homedir&#39;)();
+
+// example
+var userHome = require(&#39;user-home&#39;);
+
+console.log(userHome);
+//=&gt; &#39;/Users/...&#39;
+</code></pre><blockquote>
+<p>negative-zero: Check if a number is negative zero</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+module.exports = x =&gt; Object.is(x, -0);
+
+// example
+const negativeZero = require(&#39;negative-zero&#39;);
+
+negativeZero(-0);
+//=&gt; true
+
+negativeZero(0);
+//=&gt; false
+
+常规判断：
+0 === -0 &amp;&amp; 1 / -0 === -Infinity
+// true
+</code></pre><blockquote>
+<p>is-sorted: A small module to check if an Array is sorted.</p>
+</blockquote>
+<pre><code>function defaultComparator (a, b) {
+  return a - b
+}
+
+module.exports = function checksort (array, comparator) {
+  if (!Array.isArray(array)) throw new TypeError(&#39;Expected Array, got &#39; + (typeof array))
+  comparator = comparator || defaultComparator
+
+  for (var i = 1, length = array.length; i &lt; length; ++i) {
+    if (comparator(array[i - 1], array[i]) &gt; 0) return false
+  }
+
+  return true
+}
+
+// example
+var sorted = require(&#39;is-sorted&#39;)
+
+console.log(sorted([1, 2, 3]))
+// =&gt; true
+
+console.log(sorted([3, 1, 2]))
+// =&gt; false
+
+// supports custom comparators
+console.log(sorted([3, 2, 1], function (a, b) { return b - a }))
+// =&gt; true
+</code></pre><blockquote>
+<p>is-number: Returns true if the value is a finite number.</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+
+module.exports = function(num) {
+  if (typeof num === &#39;number&#39;) {
+    return num - num === 0;
+  }
+  if (typeof num === &#39;string&#39; &amp;&amp; num.trim() !== &#39;&#39;) {
+    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+  }
+  return false;
+};
+
+// example
+const isNumber = require(&#39;is-number&#39;);
+isNumber(5e3);               // true
+isNumber(0xff);              // true
+isNumber(-1.1);              // true
+isNumber(0);                 // true
+isNumber(1);                 // true
+isNumber(1.1);               // true
+isNumber(10);                // true
+isNumber(10.10);             // true
+isNumber(100);               // true
+isNumber(&#39;-1.1&#39;);            // true
+isNumber(&#39;0&#39;);               // true
+isNumber(&#39;012&#39;);             // true
+isNumber(&#39;0xff&#39;);            // true
+isNumber(&#39;1&#39;);               // true
+isNumber(&#39;1.1&#39;);             // true
+isNumber(&#39;10&#39;);              // true
+isNumber(&#39;10.10&#39;);           // true
+isNumber(&#39;100&#39;);             // true
+isNumber(&#39;5e3&#39;);             // true
+isNumber(parseInt(&#39;012&#39;));   // true
+isNumber(parseFloat(&#39;012&#39;)); // true
+isNumber(Infinity);          // false
+isNumber(NaN);               // false
+isNumber(null);              // false
+isNumber(undefined);         // false
+isNumber(&#39;&#39;);                // false
+isNumber(&#39;   &#39;);             // false
+isNumber(&#39;foo&#39;);             // false
+isNumber([1]);               // false
+isNumber([]);                // false
+isNumber(function () {});    // false
+isNumber({});                // false
+</code></pre><blockquote>
+<p>array-slice: Slices array from the start index up to, but not including, the end index.</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+
+module.exports = function slice(arr, start, end) {
+  var len = arr.length;
+  var range = [];
+
+  start = idx(len, start);
+  end = idx(len, end, len);
+
+  while (start &lt; end) {
+    range.push(arr[start++]);
+  }
+  return range;
+};
+
+function idx(len, pos, end) {
+  if (pos == null) {
+    pos = end || 0;
+  } else if (pos &lt; 0) {
+    pos = Math.max(len + pos, 0);
+  } else {
+    pos = Math.min(pos, len);
+  }
+
+  return pos;
+}
+
+// example
+var slice = require(&#39;array-slice&#39;);
+var arr = [&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;];
+
+slice(arr, 3, 6);
+//=&gt; [&#39;e&#39;, &#39;f&#39;, &#39;g&#39;]
+</code></pre><blockquote>
+<p>array-first: Get the first element or first n elements of an array.</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+
+var isNumber = require(&#39;is-number&#39;);
+var slice = require(&#39;array-slice&#39;);
+
+module.exports = function arrayFirst(arr, num) {
+  if (!Array.isArray(arr)) {
+    throw new Error(&#39;array-first expects an array as the first argument.&#39;);
+  }
+
+  if (arr.length === 0) {
+    return null;
+  }
+
+  var first = slice(arr, 0, isNumber(num) ? +num : 1);
+  if (+num === 1 || num == null) {
+    return first[0];
+  }
+  return first;
+};
+
+// example
+
+var first = require(&#39;array-first&#39;);
+
+first([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]);
+//=&gt; &#39;a&#39;
+
+first([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;], 1);
+//=&gt; &#39;a&#39;
+
+first([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;], 3);
+//=&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</code></pre><blockquote>
+<p>array-last: Get the last or last n elements in an array.</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;;
+
+var isNumber = require(&#39;is-number&#39;);
+
+module.exports = function last(arr, n) {
+  if (!Array.isArray(arr)) {
+    throw new Error(&#39;expected the first argument to be an array&#39;);
+  }
+
+  var len = arr.length;
+  if (len === 0) {
+    return null;
+  }
+
+  n = isNumber(n) ? +n : 1;
+  if (n === 1) {
+    return arr[len - 1];
+  }
+
+  var res = new Array(n);
+  while (n--) {
+    res[n] = arr[--len];
+  }
+  return res;
+};
+
+// example
+
+var last = require(&#39;array-last&#39;);
+
+last([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]);
+//=&gt; &#39;f&#39;
+
+last([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;], 1);
+//=&gt; &#39;f&#39;
+
+last([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;], 3);
+//=&gt; [&#39;d&#39;, &#39;e&#39;, &#39;f&#39;]
+</code></pre><blockquote>
+<p>dedupe: removes duplicates from your array.</p>
+</blockquote>
+<pre><code>&#39;use strict&#39;
+
+function dedupe (client, hasher) {
+    hasher = hasher || JSON.stringify
+
+    const clone = []
+    const lookup = {}
+
+    for (let i = 0; i &lt; client.length; i++) {
+        let elem = client[i]
+        let hashed = hasher(elem)
+
+        if (!lookup[hashed]) {
+            clone.push(elem)
+            lookup[hashed] = true
+        }
+    }
+
+    return clone
+}
+
+module.exports = dedupe
+
+// example
+
+var dedupe = require(&#39;dedupe&#39;)
+
+var a = [1, 2, 2, 3]
+var b = dedupe(a)
+console.log(b)
+
+//result: [1, 2, 3]
+
+var aa = [{a: 2}, {a: 1}, {a: 1}, {a: 1}]
+var bb = dedupe(aa)
+console.log(bb)
+
+//result: [{a: 2}, {a: 1}]
+
+var aaa = [{a: 2, b: 1}, {a: 1, b: 2}, {a: 1, b: 3}, {a: 1, b: 4}]
+var bbb = dedupe(aaa, value =&gt; value.a)
+console.log(bbb)
+
+//result: [{a: 2, b: 1}, {a: 1,b: 2}]
+</code></pre></p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2017/10/22/原生file-input图片上传/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><h1 id="原生file-input头像上传"><a href="#原生file-input头像上传" class="headerlink" title="原生file input头像上传"></a>原生file input头像上传</h1><hr>
+<p>起点个人中心的头像上传可以实现无刷新上传，预览裁剪，并且兼容ie8，下面对头像上传的具体实现做一些总结。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用form表单，监听上传input的change事件，促发表单提交，将表单提交到一个隐藏的iframe中，监听iframe的load事件，当图片上传成功后，通过load事件取到返回的图片地址，将此图片显示在裁剪框中，就可以利用js实现图片的预览，然后根据裁剪框中的选择框，得到裁剪图片的top，left以及width和height，通过这四个值以及上传的图片，后台就可以截取图片并将截取的图片返回给前端，从而实现图片的无刷新裁剪上传。</p>
+<h3 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h3><p>这里只介绍一些必须的dom结构，业务需要的其他结构可以自行添加，主要分为3大部分，1是无刷新提交表单，此表单的作用是将本地图片提交到后台然后后台返回供我们裁剪预览，2是隐藏的iframe，配合实现无刷新上传，3是入库表单，作用是将裁剪的图片上传给服务器，预览裁剪的工作在入库表单中实现。</p>
+<blockquote>
+<p>1.无刷新上传表单，即选择图片后上传供裁剪的表单，基本结构如下</p>
+</blockquote>
+<pre><code class="html">&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; action=&quot;&quot; target=&quot;iframeAvatar&quot;&gt;
+    &lt;input type=&quot;file&quot; id=&quot;fileAvatar&quot; name=&quot;image&quot; class=&quot;clip&quot; accept=&quot;image/png, image/jpeg, image/gif, image/jpg&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>这个表单结构比较简单，form里面嵌套一个 <code>type=file</code> 的input，其中设置 form 的 enctype 属性为 <code>enctype=&quot;multipart/form-data&quot;</code>,enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码,文件类型需使用<code>multipart/form-data</code> 属性值。form元素的target属性，其值指向页面内隐藏的一个 iframe 元素的id。 input 元素如上设置 accept 属性，不能直接设置成 <code>accept=&quot;image/*&quot;</code>,这样在chrome下会有性能问题，选择图片时会非常慢,另外form的action属性，指向后台接口，此接口会返回一段包含上传图片地址的html。</p>
+<blockquote>
+<p>2.隐藏的 iframe 元素</p>
+</blockquote>
+<pre><code class="html">&lt;iframe src=&quot;javascript:;&quot; id=&quot;iframeAvatar&quot; name=&quot;iframeAvatar&quot;&gt;&lt;/iframe&gt;
+</code></pre>
+<p>在 form 元素同级增加一个 iframe 元素，设置其隐藏<code>display:none;</code>，并且将其 id 设为和 form 元素的target 同值, 目的是将无刷新头像上传表单提交到此 iframe，后续可监听此iframe的load事件。</p>
+<blockquote>
+<p>3.入库表单，即裁剪完成后上传头像的表单，基本结构如下：</p>
+</blockquote>
+<pre><code class="html">&lt;form id=&quot;setAvatarForm&quot; action=&quot;&quot; method=&quot;post&quot;&gt;
+    &lt;!-- 上传成功后显示头像，以及更换头像的入口 --&gt;
+    &lt;div id=&quot;avatarXChoose&quot; class=&quot;avatar-x-choose&quot;&gt;
+        &lt;img class=&quot;avatar-show&quot; src=&quot;&lt;%= data.headUrl %&gt;&quot; alt=&quot;&lt;%= data.user.nickName %&gt;的头像&quot;&gt;
+        &lt;div&gt;
+            &lt;label class=&quot;ui-button&quot; for=&quot;fileAvatar&quot; id=&quot;elLabelforup&quot; role=&quot;button&quot; tabindex=&quot;-1&quot; data-eid=&quot;qd_M141&quot; &gt;本地上传&lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 头像裁剪 --&gt;
+    &lt;div id=&quot;avatarXCrop&quot; class=&quot;avatar-x-crop pr dn&quot;&gt;
+        &lt;!-- 裁剪大小的 4 个值 --&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;iptCropLeft&quot; name=&quot;left&quot; value=&quot;0&quot;&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;iptCropTop&quot; name=&quot;top&quot; value=&quot;0&quot;&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;iptCropWidth&quot; name=&quot;width&quot; value=&quot;120&quot;&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;iptCropHeight&quot; name=&quot;height&quot; value=&quot;120&quot;&gt;
+        &lt;div id=&quot;avatarCrop&quot; class=&quot;avatar-crop&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;avatar-preview&quot;&gt;
+            &lt;h3&gt;预览头像&lt;/h3&gt;
+            &lt;div class=&quot;avatar-big&quot;&gt;
+                &lt;div id=&quot;avatarCropL&quot; class=&quot;avatar-big-img&quot;&gt;&lt;img&gt;&lt;/div&gt;
+                &lt;div class=&quot;avatar-preview-size&quot;&gt;
+                    &lt;div&gt;大尺寸&lt;/div&gt;
+                    &lt;div&gt;120x120&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;avatar-middle&quot;&gt;
+                &lt;div id=&quot;avatarCropM&quot; class=&quot;avatar-middle-img&quot;&gt;&lt;img&gt;&lt;/div&gt;
+                &lt;div class=&quot;avatar-preview-size&quot;&gt;
+                    &lt;div&gt;中尺寸&lt;/div&gt;
+                    &lt;div&gt;60x60&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;avatar-small&quot;&gt;
+                &lt;div id=&quot;avatarCropS&quot; class=&quot;avatar-small-img&quot;&gt;&lt;img&gt;&lt;/div&gt;
+                &lt;div class=&quot;avatar-preview-size&quot;&gt;
+                    &lt;div&gt;小尺寸&lt;/div&gt;
+                    &lt;div&gt;30x30&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;label for=&quot;avatarSubmit&quot; class=&quot;ui-button&quot; id=&quot;elUserAvatar&quot;&gt;保存头像&lt;/label&gt;
+            &lt;a href=&quot;javascript:;&quot; id=&quot;btnUploadCancel&quot; class=&quot;ui-button ui-button-default&quot;&gt;取消&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;submit&quot; id=&quot;avatarSubmit&quot; class=&quot;clip&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>入库表单也是无刷新上传表单的同级元素，其 action 指向头像提交的后台接口，当无刷新表单提交完成获取到图片后，在这里显示供裁剪的图片，表单内主要分为3个部分</p>
+<blockquote>
+<p>头像设置首页，即显示目前头像和上传按钮<br>裁剪框<br>隐藏的提交input</p>
+</blockquote>
+<p>其中头像设置首页的 <code>&lt;label&gt;本地上传&lt;/label&gt;</code> 关联到无刷新上传表单的<code>input</code>按钮，所以点击就会弹出图片选择框，同理，隐藏的入库表单提交按钮的id <code>id=&quot;avatarSubmit&quot;</code>需要和裁剪框内的保存头像的label <code>for=&quot;avatarSubmit&quot;</code> 的for属性一致,这样点击保存头像就会促发入库表单的提交。<br>裁剪框内设置 4 个隐藏的input元素，同时设置name 分别为top， left， width， height， 后台在拿到上传的图片后，根据这4个值就可以正确的裁剪好图片并且返回给我们。</p>
+<h3 id="css-部分"><a href="#css-部分" class="headerlink" title="css 部分"></a>css 部分</h3><p>原生<code>&lt;input type=&quot;file&quot;&gt;</code> 按钮样式不好自定义，我们可以让<code>label</code>元素和<code>file</code>控件关联，即让<code>label</code>的<code>for</code>属性和<code>input</code>的<code>id</code>属性值相同，然后设置<code>input</code>的样式为<code>clip:rect(0 0 0 0);</code>,裁剪的top,right,bottom,left都为0，此时<code>input</code>就隐藏了，label元素的样式就比较好定义了，而且label元素可以在form表单的外面，同样可以促发表单的提交。</p>
+<h3 id="js-部分"><a href="#js-部分" class="headerlink" title="js 部分"></a>js 部分</h3><p>具体代码可以参考个人中心头像设置页面的代码，大致分为以下几个主要部分。</p>
+<ol>
+<li>监听上传头像按钮的change事件，在change事件的回调里提交无刷新表单，此时表单被提交到当前页面中的iframe中，且此iframe被隐藏了，所以页面不会刷新；</li>
+<li>同时监听iframe的load事件，通过load事件回调取得后台返回的图片地址，然后将地址作为参数传给裁剪方法；获取的主要代码为<code>var doc = iframe.contentDocument ? iframe.contentDocument : frames[iframe.id].document;</code>,contentDocument 属性能够以 HTML 对象来返回 iframe 中的文档,事先和后台约定好返回的格式，所以获取到iframe中的文档就可以获取到图片链接了。</li>
+<li>裁剪方法获取到图片地址后，将图片显示出来，通过js可实现拖动裁剪框和控制裁剪框的大小，获取裁剪框的top,left,width,height，点击保存头像按钮时促发入库表单提交，并将图片和裁剪的四个参数传给后台，后台根据这些参数就可以正确裁剪图片并将结果返回给前端，此时头像就设置成功了。</li>
+</ol>
+<h3 id="php-部分"><a href="#php-部分" class="headerlink" title="php 部分"></a>php 部分</h3><p>无刷新上传图片时，php返回一段html到iframe中，此时iframe内部和外部文档处于跨域状态，需在head内设置<code>document.domain</code>和当前domain一致，避免从ifame内读取图片数据时出现跨域问题。</p>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

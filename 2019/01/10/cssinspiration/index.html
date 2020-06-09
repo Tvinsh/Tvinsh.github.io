@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2019/01/10/cssinspiration/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/css3.png" alt="图片内容"></p>
+<h1 id="CSS灵感"><a href="#CSS灵感" class="headerlink" title="CSS灵感"></a>CSS灵感</h1><hr>
+<p>本文总结自<a href="https://chokcoco.github.io/CSS-Inspiration/#/./init" target="_blank" rel="noopener">chokcoco的分享</a>, 可能会加一些自己工作中遇到的灵感。</p>
+<h3 id="单侧投影"><a href="#单侧投影" class="headerlink" title="单侧投影"></a>单侧投影</h3><ul>
+<li>外 box-shadow 前四个参数：x 偏移值、y 偏移值 、模糊半径、扩张半径。</li>
+<li>单侧投影的核心是第四个参数：扩张半径。这个参数会根据你指定的值去扩大或缩小投影尺寸，如果我们用一个负的扩张半径，而他的值刚好等于模糊半径，那么投影的尺寸就会与投影所属的元素尺寸完全一致，除非使用偏移量来移动他，否则我们将看不到任何投影。</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/NeOvXy/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="立体投影"><a href="#立体投影" class="headerlink" title="立体投影"></a>立体投影</h3><ul>
+<li>立体投影的关键点在于利用伪元素生成一个大小与父元素相近的元素，然后对其进行 rotate 以及定位到合适位置，再赋于阴影操作。</li>
+<li>颜色的运用也很重要，阴影的颜色通常比本身颜色要更深，这里使用 hsl 表示颜色更容易操作，l 控制颜色的明暗度。</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/NeOvEz/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="长阴影"><a href="#长阴影" class="headerlink" title="长阴影"></a>长阴影</h3><ul>
+<li>借用了元素的两个伪元素</li>
+<li>通过渐变色填充两个伪元素，再通过位移、变换放置在合适的位置</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/VqEMZp/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="圆环进度条动画"><a href="#圆环进度条动画" class="headerlink" title="圆环进度条动画"></a>圆环进度条动画</h3><ul>
+<li>圆环进度条的移动本质上是阴影顺序延时移动的结果。</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/BvqwjP/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="CSS-否定伪类"><a href="#CSS-否定伪类" class="headerlink" title="CSS 否定伪类"></a>CSS 否定伪类</h3><ul>
+<li>:not(X)，是以一个简单的以选择器X为参数的功能性标记函数。它匹配不符合参数选择器X描述的元素</li>
+<li>可以利用这个伪类提高规则的优先级。例如， #foo:not(#bar) 和 #foo 会匹配相同的元素。 但是前者的优先级更高</li>
+<li>:not(foo) 将匹配任何非foo元素，包括html和body</li>
+<li>这个选择器只会应用在一个元素上，你无法用它排除所有父元素。比如， body :not(table) a 将依旧会应用在table内部的a 上, 因为 tr将会被 :not()这部分选择器匹配</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/oJaGzW/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="伪元素-focus-within-纯-CSS-方式实现掘金登陆特效"><a href="#伪元素-focus-within-纯-CSS-方式实现掘金登陆特效" class="headerlink" title="伪元素 :focus-within 纯 CSS 方式实现掘金登陆特效"></a>伪元素 :focus-within 纯 CSS 方式实现掘金登陆特效</h3><ul>
+<li>:focus-within 伪类选择器，它表示一个元素获得焦点，或，该元素的后代元素获得焦点。划重点，它或它的后代获得焦点</li>
+<li>这也就意味着，它或它的后代获得焦点，都可以触发 :focus-within</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/YdJrNE/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="placeholder-shown"><a href="#placeholder-shown" class="headerlink" title=":placeholder-shown"></a>:placeholder-shown</h3><ul>
+<li>:placeholder-shown: CSS 伪类 在 <code>&lt;input&gt;</code> 或 <code>&lt;textarea&gt;</code> 元素显示 placeholder text 时生效</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/KbGXaj/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="伪元素-border实现气泡对话框"><a href="#伪元素-border实现气泡对话框" class="headerlink" title="伪元素+border实现气泡对话框"></a>伪元素+border实现气泡对话框</h3><ul>
+<li>使用 border 生成三角形形状</li>
+<li>使用 filter: drop-shadow 生成整体阴影</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/MZPEOY/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="毛玻璃效果"><a href="#毛玻璃效果" class="headerlink" title="毛玻璃效果"></a>毛玻璃效果</h3><ul>
+<li>毛玻璃效果的重点在于，需要虚化的底图部分是会随页面 resize 变换而变换的</li>
+<li>background-attachment：如果指定了 background-image ，那么 background-attachment 决定背景是在视口中固定的还是随着包含它的区块滚动的</li>
+<li>fixed 关键字表示背景相对于视口固定。即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/WLaXBj/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="mix-blend-mode-实现抖音-LOGO"><a href="#mix-blend-mode-实现抖音-LOGO" class="headerlink" title="mix-blend-mode 实现抖音 LOGO"></a>mix-blend-mode 实现抖音 LOGO</h3><ul>
+<li>混合模式最常见于 photoshop 中，是 PS 中十分强大的功能之一</li>
+<li>主要借助伪元素实现了整体 J 结构，借助了 mix-blend-mode 实现融合效果</li>
+<li>利用 mix-blend-mode: lighten 混合模式实现两个 J 形结构重叠部分为白色</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/WLaXVO/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="mix-blend-mode-实现图片任意颜色赋值"><a href="#mix-blend-mode-实现图片任意颜色赋值" class="headerlink" title="mix-blend-mode 实现图片任意颜色赋值"></a>mix-blend-mode 实现图片任意颜色赋值</h3><ul>
+<li><a href="https://www.cnblogs.com/coco1s/p/8080211.html" target="_blank" rel="noopener">详情</a></li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/gZBobM/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="transition-delay-实现按钮-border-hover-时的动画效果"><a href="#transition-delay-实现按钮-border-hover-时的动画效果" class="headerlink" title="transition-delay 实现按钮 border hover 时的动画效果"></a>transition-delay 实现按钮 border hover 时的动画效果</h3><ul>
+<li>给容器每一边的 border 合理设置 transition-delay，可以延缓动画的发生，再连贯的拼凑在一起实现一些效果</li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/YdJYXP/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="steps-实现点赞动画"><a href="#steps-实现点赞动画" class="headerlink" title="steps 实现点赞动画"></a>steps 实现点赞动画</h3><ul>
+<li><a href="https://www.zhangxinxu.com/wordpress/2018/06/css3-animation-steps-step-start-end/" target="_blank" rel="noopener">steps详情</a></li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/BvdXPY/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+<h3 id="webkit-text-stroke-文字描边"><a href="#webkit-text-stroke-文字描边" class="headerlink" title="-webkit-text-stroke 文字描边"></a>-webkit-text-stroke 文字描边</h3><ul>
+<li><a href="https://www.zhangxinxu.com/wordpress/2017/06/webkit-text-stroke-css-text-shadow/" target="_blank" rel="noopener">详情</a></li>
+</ul>
+<iframe src="https://codepen.io/Tvinsh/embed/ebPyBP/" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

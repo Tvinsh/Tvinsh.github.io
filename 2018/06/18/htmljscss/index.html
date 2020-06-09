@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/06/18/htmljscss/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/js.jpg" alt="图片内容"></p>
+<h1 id="前端乱炖，不定时更新"><a href="#前端乱炖，不定时更新" class="headerlink" title="前端乱炖，不定时更新"></a>前端乱炖，不定时更新</h1><hr>
+<h2 id="怎么画一条0-5px的边"><a href="#怎么画一条0-5px的边" class="headerlink" title="怎么画一条0.5px的边"></a>怎么画一条0.5px的边</h2><p>参考<a href="https://fed.renren.com/2018/03/24/half-of-one-px/" target="_blank" rel="noopener">人人博客</a>，万能方法，能完美兼容ios和安卓，如下</p>
+<pre><code class="css">.hr.scale-half {
+    height: 1px;
+    transform: scaleY(0.5);
+    transform-origin: 50% 100%;
+}
+</code></pre>
+<p>1.直接设置0.5px，在不同的浏览器会有不同的表现</p>
+<ul>
+<li>IOS的Chrome会画出0.5px的边，而安卓(5.0)原生浏览器是不行的</li>
+</ul>
+<p>2.线性渐变linear-gradient</p>
+<pre><code class="css">.hr.gradient {
+    height: 1px;
+    background: linear-gradient(0deg, #fff, #000);
+}
+</code></pre>
+<ul>
+<li>这个效果和scale 0.5的差不多，都是通过虚化线，让人觉得变细了</li>
+</ul>
+<p>3.boxshadow</p>
+<pre><code class="css">.hr.boxshadow {
+    height: 1px;
+    background: none;
+    box-shadow: 0 0.5px 0 #000;
+}
+</code></pre>
+<ul>
+<li>在Chrome和Firefox都非常完美，但是Safari不支持小于1px的boxshadow</li>
+</ul>
+<p>4.svg</p>
+<pre><code class="css">.hr.svg {
+    background: none;
+    height: 1px;
+    background: url(&quot;data:image/svg+xml;utf-8,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;100%&#39; height=&#39;1px&#39;&gt;&lt;line x1=&#39;0&#39; y1=&#39;0&#39; x2=&#39;100%&#39; y2=&#39;0&#39; stroke=&#39;#000&#39;&gt;&lt;/line&gt;&lt;/svg&gt;&quot;);
+    background: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAlJyBoZWlnaHQ9JzFweCc+PGxpbmUgeDE9JzAnIHkxPScwJyB4Mj0nMTAwJScgeTI9JzAnIHN0cm9rZT0nIzAwMCc+PC9saW5lPjwvc3ZnPg==&quot;);
+}
+</code></pre>
+<p>也能完美适用于ios和安卓。</p>
+<h2 id="圆环放大的动画"><a href="#圆环放大的动画" class="headerlink" title="圆环放大的动画"></a>圆环放大的动画</h2><p>参考<a href="https://fed.renren.com/2017/12/17/svg-animation/" target="_blank" rel="noopener">人人博客</a>，如下</p>
+<pre><code class="html">&lt;svg width=&quot;22px&quot; height=&quot;22px&quot;&gt;
+    &lt;circle r=&quot;8&quot; cx=&quot;11&quot; cy=&quot;11&quot; fill=&quot;#fff&quot; stroke=&quot;#2492fc&quot;&gt;
+        &lt;animate attributeName=&quot;r&quot; from=&quot;8&quot; to=&quot;10&quot; dur=&quot;0.3s&quot; begin=&quot;mouseover&quot; fill=&quot;freeze&quot; class=&quot;magnify&quot;/&gt;
+        &lt;animate attributeName=&quot;r&quot; from=&quot;10&quot; to=&quot;8&quot; dur=&quot;0.3s&quot; begin=&quot;mouseout&quot; fill=&quot;freeze&quot; class=&quot;shrink&quot;/&gt;
+    &lt;/circle&gt;
+&lt;/svg&gt;
+</code></pre>
+<p><img src="/img/svg.png" alt="svg"></p>
+<h2 id="打开新窗口"><a href="#打开新窗口" class="headerlink" title="打开新窗口"></a>打开新窗口</h2><p>参考<a href="https://blog.asaki.me/2018/05/07/" target="_blank" rel="noopener">asaki</a>，如下</p>
+<p>1.大多数现代浏览器发现一个打开新窗口的操作不一定是由用户主动发起的时候，浏览器就有可能会阻止这个打开新窗口的操作，比如通过 AJAX 从服务器获取到一个链接，然后用window.open在新窗口中打开这个链接，浏览器就会拦截这个弹窗。</p>
+<p>解决方法，先打开页面再修改链接：</p>
+<pre><code>$a.onclick = () =&gt; {
+  const win = window.open()
+  fetch(&#39;&lt;URL&gt;&#39;)
+    .then(resp =&gt; {
+      win.location.href = resp.json().url
+    })
+}
+</code></pre><p>2.使用window.open或者通过 a 标签的target=”_blank”打开新窗口子页面时，新页面会将一个叫作opener的全局对象指向源页面的窗口对象，浏览器已经对这个对象做了很多限制，但是我们还是可以通过 opener.location.replace 更改源页面的链接，这样就很有可能实现钓鱼的目的</p>
+<pre><code>// 源页面 https://a.com
+window.open(&#39;https://b.com&#39;)
+
+// 新页面（可能是个外部广告页） https://b.com
+window.opener.location.replace(&#39;https://aa.com&#39;) // 直接把源页面地址悄悄替换成一个高仿钓鱼网站
+</code></pre><p>另外由于这个opener，浏览器会把新窗口和源窗口放同一个进程上，从而新窗口会影响到源窗口的性能</p>
+<p>可以通过跨站隔离来解决：</p>
+<p>（1）通过 a 标签target=”_blank”，我们可以再为其加上rel=”noopener”（低版本 Firefox 仅支持rel=”noreferrer”）的属性来隔绝opener</p>
+<pre><code class="html">&lt;a href=&quot;&lt;URL&gt;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Click me!&lt;/a&gt;
+</code></pre>
+<p>(2)对于window.open</p>
+<pre><code>// 较高版本
+window.open(&#39;&lt;URL&gt;&#39;, &#39;windowName&#39;, &#39;noopener&#39;)
+
+// 较低版本
+const win = window.open()
+win.opener = null
+win.location = &#39;&lt;URL&gt;&#39;
+</code></pre><h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p>1.void 后面你随便跟上一个表达式，返回的都是 undefined， 且比 undefined 占用的字节少， 并且不能被重写；类似的还有 <code>0.._</code></p>
+<p>2.判断是不是数组</p>
+<pre><code class="js">function isArray(a) {
+  return Array.isArray ? Array.isArray(a) : Object.prototype.toString.call(a) === &#39;[object Array]&#39;;
+}
+</code></pre>
+<p>3.判断是否为Dom元素</p>
+<pre><code class="js">function(obj) {
+  // 确保 obj 不是 null 
+  // 并且 obj.nodeType === 1
+  return !!(obj &amp;&amp; obj.nodeType === 1);
+}
+</code></pre>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

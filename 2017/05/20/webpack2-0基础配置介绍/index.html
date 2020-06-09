@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2017/05/20/webpack2-0基础配置介绍/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p>今天简单介绍下webpack2.0的一些基础配置。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
+<p>什么是webpack？</p>
+</blockquote>
+<p>Webpack 原本是一个针对 JavaScript 代码的模块打包工具，后来演变成了一个针对所有前端代码的管理工具。</p>
+<p><img src="/img/webpack.png" alt="webpack官网图片"></p>
+<p>上图是webpack的官网图片，可以理解为：</p>
+<ul>
+<li><p><strong>左侧</strong><br>  1.代表前端各种资源之间的依赖关系，每种类型的资源都可以被认作是一个模块，并可以相互引用。</p>
+</li>
+<li><p><strong>右侧</strong><br>  1.可以将左侧不同资源统一生成浏览器可识别的、静态的、普遍的css、html、js、png等资源；<br>  2.通过webpack构建之后，资源模块的总数变少了，其中包括隐藏了一些依赖关系，压缩合并了一些资源模块。</p>
+</li>
+</ul>
+<blockquote>
+<p>准备工作</p>
+</blockquote>
+<p>使用 npm 或者 yarn 将webpack2的包添加到全局环境和本地项目里面，然后在项目根目录新建一个webpack.config.js。<br>准备工作完成后，开始介绍基础配置。</p>
+<blockquote>
+<p>配置</p>
+</blockquote>
+<p><img src="/img/peizhi.png" alt="配置图片"></p>
+<p>上图是通过webpack将 app.js 打包成 app.bundle.js， 当执行了 <strong>webpack -p</strong> (p表示生产环境，webpack会压缩丑化代码)  其中webpack做了以下事情：</p>
+<p>1.从context 指定的目录开始查找入口文件；</p>
+<p>2.entry指定入口文件，webpack读取入口文件内容，在解析代码时，每一个引入的依赖都会被打包到最终的构建结果当中。它会接着搜索那些依赖，以及那些依赖的依赖，直到“依赖树”的叶子节点。</p>
+<p>3.output指定出口文件，webpack 将所有东西打包到 output.path 对应的文件夹里，使用 output.filename 对应的命名模板来命名（[name] 被 entry 里的对象键值所替代）</p>
+<blockquote>
+<p>入口(entry) 和 出口(output)</p>
+</blockquote>
+<ul>
+<li><p>入口entry 的类型可以是 String ｜ Array | Object , 也可以是动态入口</p>
+</li>
+<li><p>出口output 包括了一组选项，指示 webpack 如何去输出、以及在哪里输出你的构建结果，列举几个常用的选项<br>  1.<strong>path: path.resolve(__dirname, “dist”)</strong> path指定输出文件的目标路径，必须是绝对路径<br>  2.<strong>filename</strong> 指定入口文件构建之后输出的文件名：</p>
+<pre><code>  filename: &quot;bundle.js&quot;  固定输出的文件名
+
+  filename: &quot;[name].js&quot;  模版写法，多个入口的时候会对应生成多个出口文件  
+
+  filename: &quot;[chunkhash].js&quot;  用于长效缓存
+</code></pre><p>  （关于为什么可以缓存以及chunkhash和hash的区别，可以看<em><a href="https://zhuanlan.zhihu.com/p/23595975" target="_blank" rel="noopener">这篇文章</a></em>）</p>
+<p>  3.<strong>publicPath</strong> 输出解析文件的目录，url 相对于 HTML 页面，可以在这里配置cdn的路径<br>  4.<strong>library</strong> 导出库的名称 也就是当使用require时需要引入的文件名，也可以通过配置library全局命名空间里使用某些自己的方法<br>  5.<strong>chunkFilename</strong> 附加或者公用模块的文件名</p>
+</li>
+</ul>
+<ul>
+<li><strong>entry-output例子</strong></li>
+</ul>
+<ol>
+<li>多个文件打包到一起</li>
+</ol>
+<p><img src="/img/entry1.png" alt="多个文件打包在一起"></p>
+<p>上图中，入口是数组形式的，执行 webpack -p 之后，所有文件会按数组顺序一起打包到 dist/app.bundle.js 一个文件当中，app对应入口的键名。</p>
+<p>  2.多个文件，多个输出</p>
+<p><img src="/img/entry2.png" alt="多个文件多个输出"></p>
+<p>上图中，所有文件依次打包为键名对应的文件</p>
+<blockquote>
+<p>模块 module</p>
+</blockquote>
+<p>模块中的<strong>rules</strong> 定义模块规则（配置 loader、解析器等选项），其中常用的配置项有：</p>
+<p>1.<strong>test: /.js?$/</strong> 定义匹配条件<br>2.<strong>include</strong> 定义必须匹配项<br>3.<strong>exclude</strong> 必不匹配选项（优先于 test 和 include）<br>4.<strong>loader</strong> 配置相关文件的loader，相对于上下文进行解析，如解析 sass 需使用sass-loader, 与1.0不同的是，”-loader” 后缀在 2.0 中不再是可选的</p>
+<blockquote>
+<p>解析 resolve</p>
+</blockquote>
+<p>resolve 的选项能设置模块如何被解析， 列举一些常用的选项：</p>
+<p>1.<strong>modules</strong> 数组形式，告诉 webpack 解析模块时应该搜索的目录<br>2.<strong>extensions</strong> 拓展名，自动解析确定的拓展，默认值为[.js,.json],使用require引入模块时可以不用添加 .js<br>3.<strong>alias</strong> 创建 import 或 require 的别名，来确保模块引入变得更简单，可以是数组或对象形式，<br>4.<strong>moduleExtensions</strong> 在解析模块（例如，loader）时尝试使用的扩展，如果想不带 -loader 后缀使用 loader，需在这里的数组中加上 -loader<br>5.<strong>plugins</strong> 应该使用的额外的解析插件列表</p>
+<blockquote>
+<p>插件 plugins</p>
+</blockquote>
+<p>数组形式，附加插件列表，使用时，需先导入非 webpack 默认自带插件，通过new 来使用插件，如 使用HMR插件，需在plugins数组中加上new webpack.HotModuleReplacementPlugin()；</p>
+<blockquote>
+<p>externals</p>
+</blockquote>
+<p>可以是数组，字符串以及正则形式，如 externals: [“vue”, /^@angular\//],告诉webpack不要打包这些模块，而是在运行时从环境中请求他们</p>
+<blockquote>
+<p>开发中 devServer</p>
+</blockquote>
+<p>webpack 有它自己的开发服务器， webpack-dev-server 能够用于快速开发应用程序，列举一些常用的选项：</p>
+<p>1.<strong>contentBase</strong> 告诉服务器从哪里提供内容，默认情况下，将使用当前工作目录作为提供内容的目录<br>2.<strong>compress</strong> 所有来自contentBase的文件都做 gzip 压缩<br>3.<strong>host</strong> 指定host， 默认是localhost<br>4.<strong>hot</strong> bollen 是否启用webpack 热替换<br>5.<strong>noInfo</strong> 启动时和每次保存之后，那些显示的 webpack 包(bundle)信息的消息将被隐藏，错误和警告仍然会显示。<br>5.<strong>port</strong> 端口号</p>
+<h1 id="一些综合例子"><a href="#一些综合例子" class="headerlink" title="一些综合例子"></a>一些综合例子</h1><h2 id="分离第三方库代码"><a href="#分离第三方库代码" class="headerlink" title="分离第三方库代码"></a>分离第三方库代码</h2><p><img src="/img/library.png" alt="library"></p>
+<p>CommonsChunkPlugin从不同的 bundle 中提取所有的公共模块，并且将他们加入公共 bundle 中。</p>
+<p>如果没有加上 manifest 那一行配置， 执行webpack的时候也会将vender 分离出来，但当我们改变应用的代码并且再次运行 webpack，可以看到 vendor 文件的 hash 改变了，这样就不能利用浏览器缓存了，分离代码就没有意义了。</p>
+<p>原因在于，每次构建时，webpack 生成了一些 webpack runtime 代码，用来帮助 webpack 完成其工作，如果存在公共模块，运行时代码会被提取到公共模块中，所以我们需要将运行时代码提取到一个单独的 manifest 文件中。</p>
+<h2 id="分离css"><a href="#分离css" class="headerlink" title="分离css"></a>分离css</h2><p><img src="/img/css.png" alt="css"></p>
+<p>如图，如果不使用 ‘extract-text-webpack-plugin’， 只用注释掉的那行use，这样 CSS 会跟 JavaScript 打包在一起，并且在初始加载后，通过一个 style 标签注入样式，这样的话浏览器不能去异步且并行去加载 CSS， 页面需要等待整个 JavaScript 文件加载完，才能进行样式渲染。而 ‘extract-text-webpack-plugin’ 可以将css 单独 打包以解决这个问题。</p>
+<p>上图中的 ‘html-webpack-plugin’ 插件会自动生成 html文件，且引入打包生成的相关js  和 css 文件</p>
+<p>上图中的 devServer 为 webpack 服务器配置， 在命令行执行 webpack-dev-server 可以在 localhost：9000 直接访问页面，在目标文件夹中是看不到编译后的文件的,实时编译后的文件都保存到了内存当中， 需要注意的是，在输出文件夹中，需要有一个html文件，供服务器访问，所以如果需要使用 webpack-dev-server， 需要将HtmlWebpackPlugin 中的filename 的值 改成 ‘./index.html’， 即将index.html生成在 输出文件夹中。</p>
+<h2 id="如何编写一个插件"><a href="#如何编写一个插件" class="headerlink" title="如何编写一个插件"></a>如何编写一个插件</h2><p>在插件开发中最重要的两个资源就是 compiler 和 compilation 对象。</p>
+<ul>
+<li><strong>compiler</strong> 对象代表了完整的 webpack 环境配置。</li>
+<li><strong>compilation</strong> 对象代表了一次单一的版本构建和生成资源。</li>
+</ul>
+<p>插件都是被实例化的带有 apply 原型方法的对象。这个 apply 方法在安装插件时将被 webpack 编译器调用一次。apply 方法提供了一个对应的编译器对象的引用，从而可以访问到相关的编译器回调。</p>
+<h2 id="一些常用的插件"><a href="#一些常用的插件" class="headerlink" title="一些常用的插件"></a>一些常用的插件</h2><p>下表列出了比较常用的一些插件，更多插件可以看<a href="https://github.com/webpack-contrib/awesome-webpack#webpack-plugins" target="_blank" rel="noopener">官方github上的列表</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CommonsChunkPlugin</td>
+<td>将多个入口起点之间共享的公共模块，生成为一些 chunk，并且分离到单独的 bundle 中，例如，vendor.bundle.js 和 app.bundle.js</td>
+</tr>
+<tr>
+<td style="text-align:center">DefinePlugin</td>
+<td>允许在编译时(compile time)配置的全局常量，用于允许「开发/发布」构建之间的不同行为</td>
+</tr>
+<tr>
+<td style="text-align:center">DllPlugin</td>
+<td>提供分离打包的方式，可以极大提高构建时间性能  <em><a href="https://segmentfault.com/a/1190000005969643" target="_blank" rel="noopener">这是关于dll比较详细的介绍</a></em></td>
+</tr>
+<tr>
+<td style="text-align:center">ExtractTextWebpackPlugin</td>
+<td>从 bundle 中提取文本（CSS）到分离的文件（app.bundle.css）</td>
+</tr>
+<tr>
+<td style="text-align:center">HtmlWebpackPlugin</td>
+<td>用于简化 HTML 文件（index.html）的创建</td>
+</tr>
+<tr>
+<td style="text-align:center">UglifyJSPlugin</td>
+<td>代码丑化和压缩</td>
+</tr>
+</tbody>
+</table>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

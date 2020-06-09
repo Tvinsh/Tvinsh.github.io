@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2019/01/15/Phaser2笔记/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/phaser.jpg" alt="图片内容"></p>
+<h1 id="Phaser-2-笔记"><a href="#Phaser-2-笔记" class="headerlink" title="Phaser 2 笔记"></a>Phaser 2 笔记</h1><hr>
+<p>参考<a href="http://blog.xiiigame.com/phaserguan-wang-shi-li-xue-xi-bi-ji.html" target="_blank" rel="noopener">嬉戏实验室</a></p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="载入图像到缓存"><a href="#载入图像到缓存" class="headerlink" title="载入图像到缓存"></a>载入图像到缓存</h4><pre><code>//事后通过key值einstein来使用它。如果不是在preload场景中载入文件，还需要判断载入完成才能使用
+function preload() {
+    game.load.image(&#39;einstein&#39;, &#39;assets/pics/ra_einstein.png&#39;);
+}
+</code></pre><h4 id="用图像生成sprite，并添加点击事件监听器"><a href="#用图像生成sprite，并添加点击事件监听器" class="headerlink" title="用图像生成sprite，并添加点击事件监听器"></a>用图像生成sprite，并添加点击事件监听器</h4><pre><code>var image = game.add.sprite(game.world.centerX, game.world.centerY, &#39;einstein&#39;);  //einstein是载入图像时指定的key
+image.inputEnabled = true;
+image.events.onInputDown.add(listener, this);
+function listener () {
+    //do something
+}
+</code></pre><h4 id="给sprite添加运动-速度"><a href="#给sprite添加运动-速度" class="headerlink" title="给sprite添加运动/速度"></a>给sprite添加运动/速度</h4><pre><code>game.physics.enable(sprite, Phaser.Physics.ARCADE);  //赋予sprite物理性质
+sprite.body.velocity.x=150;  //x轴每秒150点
+</code></pre><h4 id="使sprite跟随输入热点（鼠标-触点）移动"><a href="#使sprite跟随输入热点（鼠标-触点）移动" class="headerlink" title="使sprite跟随输入热点（鼠标/触点）移动"></a>使sprite跟随输入热点（鼠标/触点）移动</h4><pre><code>function update () {
+    //  判断sprite到点的距离
+    if (game.physics.arcade.distanceToPointer(sprite, game.input.activePointer) &gt; 8)
+    {
+        //  使sprite向输入热点移动
+        game.physics.arcade.moveToPointer(sprite, 300);
+    }
+    else
+    {
+        //  停止
+        sprite.body.velocity.set(0);
+    }
+}
+//在render场景中实时显示输入信息
+function render () {
+    game.debug.inputInfo(32, 32);
+}
+</code></pre><h4 id="载入JSON-Hash格式的图集-可用Texture-Packer或Shoebox等工具生成-，生成动画"><a href="#载入JSON-Hash格式的图集-可用Texture-Packer或Shoebox等工具生成-，生成动画" class="headerlink" title="载入JSON Hash格式的图集(可用Texture Packer或Shoebox等工具生成)，生成动画"></a>载入JSON Hash格式的图集(可用Texture Packer或Shoebox等工具生成)，生成动画</h4><pre><code>function preload() {
+    game.load.atlasJSONHash(&#39;bot&#39;, &#39;assets/sprites/running_bot.png&#39;, &#39;assets/sprites/running_bot.json&#39;);
+}
+function create() {
+    //  生成sprite
+    var bot = game.add.sprite(200, 200, &#39;bot&#39;);
+    //  生成动画run（使用图集中的所有帧）
+    bot.animations.add(&#39;run&#39;);
+    //  循环播放动画run
+    bot.animations.play(&#39;run&#39;, 15, true);
+}
+</code></pre><h4 id="渲染文本"><a href="#渲染文本" class="headerlink" title="渲染文本"></a>渲染文本</h4><pre><code>var text = &quot;- phaser -\n with a sprinkle of \n pixi dust.&quot;;
+var style = { font: &quot;65px Arial&quot;, fill: &quot;#ff0044&quot;, align: &quot;center&quot; }; //文本样式
+var t = game.add.text(game.world.centerX-300, 0, text, style);  //添加文本控件
+</code></pre><h4 id="给图像添加tween动画"><a href="#给图像添加tween动画" class="headerlink" title="给图像添加tween动画"></a>给图像添加tween动画</h4><pre><code>var tween = game.add.tween(sprite);
+//  设置参与动画的属性、时长、类型等
+tween.to({ x: 800 }, 5000, &#39;Linear&#39;, true, 0);
+</code></pre><h3 id="精灵"><a href="#精灵" class="headerlink" title="精灵"></a>精灵</h3><h4 id="通过载入的图像生成、添加image"><a href="#通过载入的图像生成、添加image" class="headerlink" title="通过载入的图像生成、添加image"></a>通过载入的图像生成、添加image</h4><pre><code>function preload() {
+    game.load.image(&#39;pic&#39;, &#39;assets/pics/acryl_bladerunner.png&#39;);
+}
+function create() {
+    //与sprite相比，image没有动画和物理属性
+    var image = game.add.image(100, 100, &#39;pic&#39;);
+}
+</code></pre><h4 id="通过载入的图像生成、添加sprite"><a href="#通过载入的图像生成、添加sprite" class="headerlink" title="通过载入的图像生成、添加sprite"></a>通过载入的图像生成、添加sprite</h4><pre><code>function preload() {
+    game.load.image(&#39;mushroom&#39;, &#39;assets/sprites/mushroom2.png&#39;);
+}
+function create() {
+    var test = game.add.sprite(200, 200, &#39;mushroom&#39;);
+}
+</code></pre><h4 id="更改锚点"><a href="#更改锚点" class="headerlink" title="更改锚点"></a>更改锚点</h4><pre><code>sprite.anchor.x += 0.1;
+sprite.anchor.y += 0.1;
+</code></pre><h4 id="移动sprite"><a href="#移动sprite" class="headerlink" title="移动sprite"></a>移动sprite</h4><pre><code>sprite.x -= 4;
+sprite.y -= 4;
+</code></pre><h4 id="调整尺寸"><a href="#调整尺寸" class="headerlink" title="调整尺寸"></a>调整尺寸</h4><pre><code>sprite.scale.setTo(rand, rand);
+//  或者如下：
+//  sprite.scale.x = value;
+//  sprite.scale.y = value;
+</code></pre><h4 id="sprite-group遮罩"><a href="#sprite-group遮罩" class="headerlink" title="sprite/group遮罩"></a>sprite/group遮罩</h4><pre><code>sprite = game.add.sprite(0, 0, &#39;chaos&#39;);
+// 遮罩要是Graphics对象（图像遮罩可用BitmapData.alphaMask()）
+let mask:Graphics = game.add.graphics(0, 0);
+mask.beginFill(0xffffff);
+mask.drawCircle(100, 100, 100);
+sprite.mask = mask;
+</code></pre><h3 id="ARCADE物理引擎"><a href="#ARCADE物理引擎" class="headerlink" title="ARCADE物理引擎"></a>ARCADE物理引擎</h3><h4 id="关闭body属性即取消运动和碰撞检测"><a href="#关闭body属性即取消运动和碰撞检测" class="headerlink" title="关闭body属性即取消运动和碰撞检测"></a>关闭body属性即取消运动和碰撞检测</h4><pre><code>sprite.body.enable = false;
+</code></pre><h4 id="重力"><a href="#重力" class="headerlink" title="重力"></a>重力</h4><pre><code>sprite3.body.gravity.y = 50;
+sprite4.body.allowGravity = false;
+</code></pre><h4 id="反弹"><a href="#反弹" class="headerlink" title="反弹"></a>反弹</h4><pre><code>image = game.add.sprite(0, 0, &#39;flyer&#39;);
+game.physics.enable(image, Phaser.Physics.ARCADE);
+image.body.velocity.setTo(200,200);
+//  与世界边界碰撞
+image.body.collideWorldBounds = true;
+//  反弹能量（ &quot;1&quot;即100%）
+image.body.bounce.set(1, 1);
+</code></pre><h4 id="重力与拖拽"><a href="#重力与拖拽" class="headerlink" title="重力与拖拽"></a>重力与拖拽</h4><pre><code>sprite.inputEnabled = true;
+sprite.input.enableDrag();
+sprite.events.onDragStart.add(startDrag, this);
+sprite.events.onDragStop.add(stopDrag, this);
+function startDrag() {
+    //  拖拽时应禁止物理运动
+    sprite.body.moves = false;
+}
+function stopDrag() {
+    //  停止拖拽时再打开物理运动
+    sprite.body.moves = true;
+}
+</code></pre><h4 id="与游戏世界碰撞的事件"><a href="#与游戏世界碰撞的事件" class="headerlink" title="与游戏世界碰撞的事件"></a>与游戏世界碰撞的事件</h4><pre><code>face.body.collideWorldBounds = true;
+//  缺省情况下这个信号是空的
+face.body.onWorldBounds = new Phaser.Signal();
+//  然后监听事件
+face.body.onWorldBounds.add(hitWorldBounds, this);
+</code></pre><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><h4 id="限制在精灵范围内"><a href="#限制在精灵范围内" class="headerlink" title="限制在精灵范围内"></a>限制在精灵范围内</h4><pre><code>bounds = game.add.sprite(game.world.centerX, game.world.centerY, &#39;pic&#39;);
+sprite.input.enableDrag();
+sprite.input.boundsSprite = bounds;
+</code></pre><h4 id="按键时长"><a href="#按键时长" class="headerlink" title="按键时长"></a>按键时长</h4><pre><code>game.input.onUp.add(getTime, this);
+function getTime(pointer) {
+// lastDuration = pointer.timeUp - pointer.timeDown;
+lastDuration = pointer.duration;
+}
+</code></pre><h4 id="锁定为横向拖拽（禁用纵向拖拽）"><a href="#锁定为横向拖拽（禁用纵向拖拽）" class="headerlink" title="锁定为横向拖拽（禁用纵向拖拽）"></a>锁定为横向拖拽（禁用纵向拖拽）</h4><pre><code>sprite.input.allowVerticalDrag = false;
+//  禁用横向拖拽，见### Motion Lock Vertical
+sprite.input.allowHorizontalDrag = false;
+</code></pre><h4 id="点击事件"><a href="#点击事件" class="headerlink" title="点击事件"></a>点击事件</h4><pre><code>game.input.onTap.add(onTap, this);
+function onTap(pointer, doubleTap) {
+    if (doubleTap)    {    }
+}
+</code></pre><h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><h4 id="定时事件"><a href="#定时事件" class="headerlink" title="定时事件"></a>定时事件</h4><pre><code>game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
+</code></pre><h4 id="循环事件"><a href="#循环事件" class="headerlink" title="循环事件"></a>循环事件</h4><pre><code>game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
+</code></pre><h4 id="自定定时器"><a href="#自定定时器" class="headerlink" title="自定定时器"></a>自定定时器</h4><pre><code>timer = game.time.create(false);
+timer.loop(2000, updateCounter, this);
+timer.start();
+</code></pre><h4 id="移除事件-定时器"><a href="#移除事件-定时器" class="headerlink" title="移除事件/定时器"></a>移除事件/定时器</h4><pre><code>//  从上倒下移除
+game.time.events.remove(timerEvents[i]);
+</code></pre><h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><h4 id="文本渐变"><a href="#文本渐变" class="headerlink" title="文本渐变"></a>文本渐变</h4><pre><code>var grd = text.context.createLinearGradient(0, 0, 0, text.height);
+grd.addColorStop(0, &#39;#8ED6FF&#39;);   
+grd.addColorStop(1, &#39;#004CB3&#39;);
+text.fill = grd;
+</code></pre><h4 id="文本在边框中居中"><a href="#文本在边框中居中" class="headerlink" title="文本在边框中居中"></a>文本在边框中居中</h4><pre><code>var style = { font: &quot;bold 32px Arial&quot;, fill: &quot;#fff&quot;, boundsAlignH: &quot;center&quot;, boundsAlignV: &quot;middle&quot; };
+text = game.add.text(0, 0, &quot;phaser 2.4 text bounds&quot;, style);
+text.setShadow(3, 3, &#39;rgba(0,0,0,0.5)&#39;, 2);
+//设定文本边框为x0, y100，800x100
+text.setTextBounds(0, 100, 800, 100);
+</code></pre><h4 id="文本在精灵中居中"><a href="#文本在精灵中居中" class="headerlink" title="文本在精灵中居中"></a>文本在精灵中居中</h4><pre><code>sprite = game.add.sprite(200, 200, &#39;pic&#39;);
+var style = { font: &quot;32px Arial&quot;, fill: &quot;#ff0044&quot;, wordWrap: true, wordWrapWidth: sprite.width, align: &quot;center&quot;, backgroundColor: &quot;#ffff00&quot; };
+text = game.add.text(0, 0, &quot;- text on a sprite -\ndrag me&quot;, style);
+text.anchor.set(0.5);
+function update() {
+text.x = Math.floor(sprite.x + sprite.width / 2);
+text.y = Math.floor(sprite.y + sprite.height / 2);
+}
+</code></pre><h4 id="文本样式"><a href="#文本样式" class="headerlink" title="文本样式"></a>文本样式</h4><pre><code>// 单词折行
+var style = { font: &#39;bold 60pt Arial&#39;, fill: &#39;white&#39;, align: &#39;left&#39;, wordWrap: true, wordWrapWidth: 450 };
+var text = game.add.text(game.world.centerX, game.world.centerY, &quot;phaser with a sprinkle of pixi dust&quot;, style);
+
+// 文本行距
+text2.lineSpacing = 40;
+
+// 文本内边距
+text.padding.set(10, 16);
+
+// 文本阴影
+var text = createText(100, &#39;shadow 5&#39;);
+// Phaser.Text.setShadow(x, y, color, blur, shadowStroke, shadowFill) : Phaser.Text;
+text.setShadow(3, 3, &#39;rgba(0,0,0,0.5)&#39;, 5);
+
+// 字符上色/着色
+//  给16-24上&#39;#ffff00&#39;色
+text.addColor(&#39;#ffff00&#39;, 16);
+text.addColor(&#39;#ffffff&#39;, 25);
+text.addColor(&#39;#ff00ff&#39;, 28);
+text.addColor(&#39;#ffffff&#39;, 32);
+//见### Text Tint
+// text.tint = (item.tint === 0xffffff) ? 0xff0000 : 0xffffff;
+</code></pre><h4 id="Bitmap字体"><a href="#Bitmap字体" class="headerlink" title="Bitmap字体"></a>Bitmap字体</h4><pre><code>game.load.bitmapFont(&#39;desyrel&#39;, &#39;assets/fonts/bitmapFonts/desyrel.png&#39;, &#39;assets/fonts/bitmapFonts/desyrel.xml&#39;);
+bmpText = game.add.bitmapText(200, 100, &#39;desyrel&#39;, &#39;Phaser &amp; Pixi\nrocking!&#39;, 64);
+</code></pre></p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

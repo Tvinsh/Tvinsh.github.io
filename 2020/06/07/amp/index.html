@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.3.css">
+	<link rel="canonical" href="https://2fz1.me/2020/06/07/amp/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="/tags/life" class="false"><img src="/image/design/feel.svg">生活</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="/tags/photo" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><h2 id="AMP-简介"><a href="#AMP-简介" class="headerlink" title="AMP 简介"></a>AMP 简介</h2><p>AMP 全称 Accelerated Mobile Pages,顾名思义是为了加速移动网络的网页加载从而提升体验。<a href="https://www.ampproject.org/zh_cn/learn/overview/" target="_blank" rel="noopener">AMP官网</a>上称其可在很多平台上提供卓越的用户体验。AMP网页采用3大核心组件构建而成，分别是：</p>
+<pre><code>1. AMP HTML
+2. AMP JS
+3. AMP Cache
+</code></pre><h3 id="AMP-HTML"><a href="#AMP-HTML" class="headerlink" title="AMP HTML"></a>AMP HTML</h3><p>AMP HTML 是为确保可靠性能而具有某些限制的 HTML。意思就是可以使用绝大部分常规的HTML标签，但是对于影响性能的标签，AMP是禁止使用的，取而代之的是AMP自己经过处理的相对应的标签。以下大概列举几个比较重要的标签，具体可以看<a href="https://www.ampproject.org/zh_cn/docs/reference/spec" target="_blank" rel="noopener">官网中的描述</a></p>
+<table>
+<thead>
+<tr>
+<th>原生</th>
+<th>AMP tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td>amp-img</td>
+</tr>
+<tr>
+<td>video</td>
+<td>amp-video</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>amp-audio</td>
+</tr>
+<tr>
+<td>a</td>
+<td>href 不能是javascript:</td>
+</tr>
+</tbody>
+</table>
+<p>一个简单的标准的AMP页面如下：</p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html ⚡&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;utf-8&quot;&gt;
+   &lt;link rel=&quot;canonical&quot; href=&quot;hello-world.html&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,minimum-scale=1,initial-scale=1&quot;&gt;
+   &lt;style amp-boilerplate&gt;body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}&lt;/style&gt;&lt;noscript&gt;&lt;style amp-boilerplate&gt;body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}&lt;/style&gt;&lt;/noscript&gt;
+   &lt;script async src=&quot;https://cdn.ampproject.org/v0.js&quot;&gt;&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;Hello World!&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>必须：</p>
+<ul>
+<li>包含顶级 <code>&lt;html ⚡&gt;</code> 标记（也接受 <code>&lt;html amp&gt;</code>）</li>
+<li>在<code>&lt;head&gt;</code>内包含一个 <code>&lt;link rel=&quot;canonical&quot; href=&quot;$SOME_URL&quot;&gt;</code>标记，该标记指向 AMP HTML 文档的常规 HTML 版本，或在此类 HTML 版本不存在的情况下指向文档本身,在对应 HTML 中加上<code>&lt;link rel=&quot;amphtml&quot; href=&quot;$AMP_URL&quot;&gt;</code>指向AMP页面</li>
+<li>包含 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,minimum-scale=1&quot;&gt;</code> 标记。还建议包括 <code>initial-scale=1</code></li>
+<li>包含 AMP 需要的css</li>
+<li>包含 <code>&lt;script async src=&quot;https://cdn.ampproject.org/v0.js&quot;&gt;&lt;/script&gt;</code> 标记作为<code>&lt;head&gt;</code>中的最后一个元素（这样做将会包括并加载 AMP JS 库）</li>
+<li>将样式内联，用<code>&lt;style amp-custom&gt;</code>来包裹</li>
+<li>除了AMP需要的js和css，不能从外部引入需要的js，css文件</li>
+</ul>
+<h3 id="AMP-JS"><a href="#AMP-JS" class="headerlink" title="AMP JS"></a>AMP JS</h3><p>实现所有AMP的最佳性能做法，管理资源加载，并提供上面提到的自定义标记，所有这些都是为了确保快速渲染网页；它可使来自外部资源的所有内容保持异步，让网页中的任何内容都能毫无阻碍地渲染；将所有 iframe 沙盒化，加载资源之前对网页上每个元素的布局进行预先计算，以及禁用性能缓慢的 CSS 选择器。</p>
+<h3 id="AMP-Cache"><a href="#AMP-Cache" class="headerlink" title="AMP Cache"></a>AMP Cache</h3><p>是一种基于代理的内容交付网络，用于交付所有有效的 AMP 文档。它可提取 AMP HTML 网页，对这些网页进行缓存，并自动改进网页性能。使用之后包括文档，所有 JS 文件及所有图片都从使用 HTTP 2.0 的同一来源加载，从而可实现最高效率。另外它还提供验证系统以及错误提示。</p>
+<h2 id="AMP是如何提升性能的"><a href="#AMP是如何提升性能的" class="headerlink" title="AMP是如何提升性能的"></a>AMP是如何提升性能的</h2><p>看了上面的介绍以及实际体验之后，我们知道AMP确实很快，下面简单介绍下 AMP 是如何提升加载速度的。</p>
+<h3 id="仅允许异步脚本"><a href="#仅允许异步脚本" class="headerlink" title="仅允许异步脚本"></a>仅允许异步脚本</h3><p>javascript 会阻塞 DOM 构建和页面的渲染，AMP 页面不能包含作者自己编写的任何 JavaScript， 仅在 iframe 中允许第三方 JS，这样即使第三方 JS 触发了多次样式重新计算， 它们微小的 iframe 也只有非常少的 DOM，不会阻碍主页面的执行。</p>
+<h3 id="确定静态资源的大小"><a href="#确定静态资源的大小" class="headerlink" title="确定静态资源的大小"></a>确定静态资源的大小</h3><p>图片、广告或 iframe 等外部资源必须在 HTML 中声明其大小，以便 AMP 可以在资源下载前确定每个元素的大小和位置。</p>
+<p>举个栗子，DOM 在渲染 img 标签的时候，要去异步请求图片资源，在加载图片的时候，不能阻塞 DOM 的渲染，所以我们首先渲染图片的占位符，比如原生的alt属性；<br>当图片加载完成，浏览器知道了图片的大小，于是将占位符替换成图片，如果占位符和图片的大小不一致，就会引起回流，即reflow，这个就是性能的消耗。</p>
+<blockquote>
+<p>reflow：例如某个子元素样式发生改变，直接影响到了其父元素以及往上追溯很多祖先元素（包括兄弟元素），这个时候浏览器要重新去渲染这个子元素相关联的所有元素的过程称为回流。</p>
+</blockquote>
+<p>于是 AMP 将 img 替换成了 amp-img，用来解决刚才提到的问题，其实这个优化方案跟我们现在使用的图片lazyload有点相似，不过lazyload需要借助外部脚本来实现，amp-img则是将这些优化集成到了amp的脚本里了。</p>
+<p>另外 AMP 不必等待所有资源都下载完成就可以直接加载页面布局，将文档布局与资源布局脱钩，布局整个文档（包括字体）只需要一个 HTTP 请求。</p>
+<h3 id="内联css并且有大小限制"><a href="#内联css并且有大小限制" class="headerlink" title="内联css并且有大小限制"></a>内联css并且有大小限制</h3><p>CSS 会阻碍所有渲染和页面加载，AMP 中仅允许内联css，这样就减少了至少一个 css的请求，另外，内嵌样式表最大为 50 KB，对于一般页面都足够了，如果是非常复杂的页面，就需要比较精细的css风格。</p>
+<h3 id="仅运行-GPU-加速动画"><a href="#仅运行-GPU-加速动画" class="headerlink" title="仅运行 GPU 加速动画"></a>仅运行 GPU 加速动画</h3><p>这句话大概的意思就是有些动画会引起浏览器的重新渲染，比如改变了某个元素的宽高，就会引起之前说的回流。AMP 目前只支持使用 transform 和 opacity 属性更改来实现动画，具体解释可以看 <a href="https://developers.google.com/web/fundamentals/performance/rendering/" target="_blank" rel="noopener">渲染性能</a>,<a href="https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count" target="_blank" rel="noopener">坚持仅合成器的属性</a>,对于担心仅使用这两个属性满足不了需求，<a href="https://aerotwist.com/blog/flip-your-animations/" target="_blank" rel="noopener">FLIP原则</a>可能会帮助将动画从开销更大的属性重新映射为变形和透明度的更改。</p>
+<p>还有很多优化点就不一一列举了，比如延时加载和滚动加载等。</p>
+<h3 id="AMP-Cache-1"><a href="#AMP-Cache-1" class="headerlink" title="AMP Cache"></a>AMP Cache</h3><p>说了以上这么多，最重要的可能还是cache,官网解释如下：</p>
+<blockquote>
+<p>Google AMP Cache 是一种基于代理的内容交付网络，用于交付所有有效的 AMP 文档。它可提取 AMP HTML 网页，对这些网页进行缓存，并自动改进网页性能。使用 Google AMP Cache 时，文档，所有 JS 文件及所有图片都从使用 HTTP 2.0 的同一来源加载，从而可实现最高效率。</p>
+</blockquote>
+<p>大意是 AMP Cache 会把 AMP 页面的所有资源都进行缓存并且替换掉了路径。</p>
+<p>举个栗子，我们访问 起点国际m站中 Mystical Journey 这本书的详情页，路径是 <code>https://m.webnovel.com/book/8335353205000005</code>,页面里有这本书的书封，路径是<code>https://img.webnovel.com/bookcover/8335353205000005/300/300.jpg?coverUpdateTime=1510210938392</code>,当 AMP Cache 对这个 AMP 页面进行缓存的时候，会扫描页面，对里面的资源进行缓存并且替换掉了路径。我们打开这个页面对应的AMP页面，发现图片的地址变成了<code>https://img-webnovel-com.cdn.ampproject.org/ii/w820/s/img.webnovel.com/bookcover/8335353205000005/300/300.jpg?coverUpdateTime=1510210938392</code>,变成了ampproject的cdn路径了，当我把这张图下载下来时，发现是webp格式的，这又是一种图片优化的方法，具体见<a href="https://baike.baidu.com/item/webp%E6%A0%BC%E5%BC%8F/4077671?fr=aladdin" target="_blank" rel="noopener">webp百度百科</a>，另外，这个详情页的地址也变了，变成了<code>https://www.google.co.uk/amp/s/m.webnovel.com/amp/book/8335353205000005</code></p>
+<p>通过 AMP Cache，所有资源都是同一个 host，可以共享 dns，还有google强大的cdn，另一方面，google搜索结果页还会对 AMP 页面进行预加载，所以经过以上，AMP 页面真的快得跟闪电一样！！！</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>除了上述提到的组件，AMP 提供了一套完整的组件库，包括 amp-ifame 这样的UI组件，以及 amp-bind，amp-mustache 这样的功能组件。</p>
+<p>另外，在AMP上海路演中，在大中华区推广 AMP 的负责人介绍，国内包括百度，360，搜狗，微博，QQ空间等都支持AMP，并且都有自己的cdn用来支持AMP Cache，不同于搜索引擎，在微博和QQ空间上，并不会主动去抓取 AMP 页面，比如你分享了一个 AMP 页面到 QQ空间当中，QQ空间不会主动去抓取，但是只要有一个用户在QQ空间中点开了这个页面，QQ空间就会收录缓存这个页面，当后面有人点击时，就是实现秒开的效果。</p>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

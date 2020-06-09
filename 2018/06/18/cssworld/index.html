@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/06/18/cssworld/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/css3.png" alt="图片内容"></p>
+<h1 id="css-world-读后总结"><a href="#css-world-读后总结" class="headerlink" title="css world 读后总结"></a>css world 读后总结</h1><hr>
+<p>张老师新书刚出来，就赶紧买了本让张老师签了名～也很快就读完了，今天突然翻到，就想着把书上临时做的笔记整理下，没有系统地整理，可能会有些乱。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>1.为什么 list-item 会出现项目符号,因为除了块级盒子外还生成了一个附加的盒子，学名“标记盒子”，专门用来放圆点，数字这些项目符号;</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>2.绝对定位元素的宽高百分比是相对于 padding box 的，非绝对定位元素则是相对于 content box 的;</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>3.max-width 会覆盖width，即使width用了!important;</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>4.“幽灵空白节点”：HTML5文档声明中，内联元素的所有解析和渲染表现就如同每个行框盒子（每一行就是一个行框盒子）的前面有一个空白节点一样。</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>5.margin, padding的百分比值无论是水平方向还是垂直方向均是相对于宽度计算的；可以利用padding进行一些大小屏的适配；</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>6.margin:auto;如果一侧定值，一侧auto，则auto为剩余空间的大小；所以右对齐可以通过margin-left: auto实现；</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>7.ex是css中的一个相对单位，指的是小写字母x的高度，即x-height，可以利用这个实现内联元素的垂直居中对齐</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>8.一个inline-block的元素，如果里面没有内联元素，或者overflow不是visible，则该元素的基线就是其margin底边线</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>9.PC端，默认滚动条均来自html，而不是body，一个让页面滚动条不发生晃动的小技巧</p>
+</blockquote>
+<pre><code class="css">html {
+    overflow-y: scroll; // for ie8
+}
+:root {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+:root body {
+    position: absolute;
+}
+body {
+    width: 100vw;
+    overflow: hidden;
+}
+</code></pre>
+<pre><code class="css">.icon-arrow {
+    display: inline-block;
+    width: 20px;
+    height: 1ex; // 实现
+    background: url(/images/5/arrow.png) no-repeat center;
+}
+</code></pre>
+<blockquote>
+<p>10.absolute 是非常独立的css属性值，其样式和行为表现不依赖其他任何css属性就可以完成;</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>11.如果overflow不是定位元素，同时绝对定位元素和overflow容器之间没有定位元素，则overflow无法对absolute元素进行裁剪；</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>12.尽量不使用relative，尝试使用“无依赖的绝对定位”，如果一定要用，要最小化使用</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>13.字体分为衬线字体和无衬线字体，font-family的属性值，serif表示衬线，sans-serif表示无衬线</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>14.text-transform 字符大小写，设置uppercase或lowercase后，显示的永远是大写或小写</p>
+</blockquote>
+<p></p>
+
+<blockquote>
+<p>15.background position的计算公式：<br>positionX = （容器宽度-图片宽度）<em> percentX；<br>positionY = （容器高度-图片高度）</em>perventY；</p>
+</blockquote>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>1.某模块，文字少的时候居中显示，多于一行的时候居左显示；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/NyKPQv/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>2.利用 max-height实现展开收起,其中 max-height的值要比展开的内容高度大，因为max-height值比height计算值大的时候，元素高度就是height的计算高度，但是也不能太大，否则会感觉动画延迟了；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/GGGOmv/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>3.图片没加载时显示alt信息，当图片有了src属性后，就从普通元素变成了替换元素，此时 ::before, ::after 就都不支持了；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/gKKXBe/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>4.可以通过content属性给img设置图片，也可使普通元素变成替换元素,甚至可以给非img标签添加图片内容，比较实用的场景是logo，我们一般使用h1标签加背景图，现在可以用这个方法试试了,虽然表面上文字被替换了，实际上搜索引擎抓取的还是原始的文字信息;</p>
+<iframe src="https://codepen.io/Tvinsh/embed/ERRbzy/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>5.伪元素辅助实现两端对齐，原理是:before辅助实现底对齐，:after辅助实现两端对齐,缺点是写的时候，有些地方不能换行或空格；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/vrrpGj/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>6.动态加载中的效果，需要使用::before 加上 display 为 block，为了在高版本浏览器下将原来的3个点推到最下面</p>
+<iframe src="https://codepen.io/Tvinsh/embed/OEEzWd/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>7.content 计数器，其中：counter-reset设置计数器的名字并设置从哪个数开始计数，默认是0；counter-increment计数器递增,counter()方法，显示计数；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/YvvjwW/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>8.利用温和的padding，内联元素的padding尺寸有效，但是对布局没有产生影响，我们可以用来增加点击区域的大小，提升用户体验；也可以制作分隔线；</p>
+<iframe src="https://codepen.io/Tvinsh/embed/mKKjrW/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>9.列表块两端对齐，一行显示3个，中间有2个20像素的间隙，可以使用css3:</p>
+<pre><code class="css">li {
+    float: left;
+    width: 100px;
+    margin-right: 20px;
+}
+li:nth-of-type(3n) {
+    margin-right: 0;
+}
+</code></pre>
+<p>或者，我们可以通过增加容器宽度,此时ul的宽度就相当于 100% + 20px：</p>
+<pre><code class="css">ul {
+    margin-right: -20px;
+}
+ul li {
+    float: left;
+    width: 100px;
+    margin-right: 20px;
+}
+</code></pre>
+<p>10.绝对或固定定位和text-align实现主窗体右侧的返回顶部</p>
+<iframe src="https://codepen.io/Tvinsh/embed/ERRdrr/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+<p>11.text-align:justify实现两端对齐，需要有分隔点，还要超过一行，此时非最后一行会两端对齐,此时可以利用空标签进行占位，使得有效标签非最后一行</p>
+<iframe src="https://codepen.io/Tvinsh/embed/QxxYQg/" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>

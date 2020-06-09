@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tomato</title>
+	<meta name="keywords" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="description" content="tomato的博客，tomato，最帅的博客，前端博客，javascript,html,css,nodejs,pwa，amp">
+	<meta name="viewport" content="user-scalable=no,width=718">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="baidu-site-verification" content="HY5hBj9CX6" />
+	<meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.json">
+    
+	  <link rel="amphtml" href="./amp/index.html">
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"> -->
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/mono-blue.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="/css/i.css">
+	<link rel="stylesheet" href="/css/cmts.css">
+	<link rel="stylesheet" href="/css/arc.0.4.css">
+	<link rel="canonical" href="https://2fz1.me/2018/06/08/browser/">
+	<script type="text/javascript">
+		var host = "2fz1.me";
+		if ((host == window.location.host) && (window.location.protocol != "https:"))
+			window.location.protocol = "https";
+	</script>
+</head>
+<body>
+	<nav class="nav">
+	<a href="/" class="true home" ><img src="/image/me.jpeg">tomato</a>
+	<a href="/archives/" title="连续不断的奇迹" class="false" ><img src="/image/design/nichijou.svg">归档</a>
+	<a href="/tags/" title="{1+1>2}" class="false eltag" ><img src="/image/design/tag.svg">tag</a>
+	<a href="https://2fz1.me/blogDemos" target="_blank" title="{1+1>2}" class="false"><img src="/image/design/code.svg">Demo</a>
+	<a href="https://2fz1.me/blogDemos/photos/index.html" target="_blank" class="false"><img src="/image/design/feel.svg">图片</a>
+	<!-- <a href="#!home" ><img src="/image/design/vsco.svg">VSCO</a> -->
+	<a href="https://github.com/Tvinsh/slides/blob/master/README.md" target="_blank" class="false"><img src="/image/design/photo.svg">分享</a>
+	<a href="/about" class="false"><img src="/image/design/link.svg">About</a>
+</nav>
+	<div id="m">
+		<div id="S">
+	<div class="I">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="键入内容启用google搜索"><input type="hidden" name="sitesearch" value="https://2fz1.me"></form>
+	</div>
+	<ul id="Sl" class="h">
+		<li>
+			<a>
+				<h3>键入内容启用google搜索</h3>
+			</a>
+		</li>
+	</ul>
+</div>
+
+		
+		
+		<article class="p">
+	<div class="p-text">
+		<p><p><img src="/img/browser.jpeg" alt="browser"></p>
+<h1 id="从浏览器多进程到JS单线程"><a href="#从浏览器多进程到JS单线程" class="headerlink" title="从浏览器多进程到JS单线程"></a>从浏览器多进程到JS单线程</h1><hr>
+<h4 id="浏览器是多进程的"><a href="#浏览器是多进程的" class="headerlink" title="浏览器是多进程的"></a>浏览器是多进程的</h4><p> <strong>1.Browser进程</strong> ：浏览器的主进程（负责协调、主控），只有一个</p>
+<ul>
+<li>负责浏览器界面显示，与用户交互。如前进，后退等</li>
+<li>负责各个页面的管理，创建和销毁其他进程</li>
+<li>网络资源的管理，下载等</li>
+</ul>
+<p><strong>2.第三方插件进程</strong> ：每种类型的插件对应一个进程，仅当使用该插件时才创建</p>
+<p><strong>3.GPU进程</strong> ：最多一个，用于3D绘制等</p>
+<p><strong>4.浏览器渲染进程（浏览器内核）</strong>：</p>
+<ul>
+<li>Renderer进程，内部是多线程的</li>
+<li>默认每个Tab页面一个进程，互不影响</li>
+<li>页面渲染，脚本执行，事件处理等</li>
+</ul>
+<h4 id="浏览器内核是多线程的"><a href="#浏览器内核是多线程的" class="headerlink" title="浏览器内核是多线程的"></a>浏览器内核是多线程的</h4><p><strong>1.GUI渲染线程</strong> ： </p>
+<ul>
+<li>负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等</li>
+<li>GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执</li>
+</ul>
+<p><strong>2.JS引擎线程</strong> ：</p>
+<ul>
+<li>负责处理Javascript脚本程序，如V8</li>
+<li>JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序</li>
+<li>和GUI渲染线程互斥，如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞</li>
+</ul>
+<p><strong>3.事件触发线程</strong> ：</p>
+<ul>
+<li>归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）</li>
+<li>当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中</li>
+<li>由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）</li>
+</ul>
+<p><strong>4.定时触发器线程</strong> ：</p>
+<ul>
+<li>浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）</li>
+</ul>
+<p><strong>5.异步http请求线程</strong> ：</p>
+<ul>
+<li>用于 http请求</li>
+</ul>
+<h4 id="打开一个页面需要哪些进程和线程"><a href="#打开一个页面需要哪些进程和线程" class="headerlink" title="打开一个页面需要哪些进程和线程"></a>打开一个页面需要哪些进程和线程</h4><ol>
+<li>Browser进程收到用户请求，首先需要获取页面内容（譬如通过网络下载资源），随后将该任务通过RendererHost接口传递给Render进程</li>
+<li>Renderer进程的Renderer接口收到消息，简单解释后，交给渲染线程，然后开始渲染<ul>
+<li>(1)渲染线程接收请求，加载网页并渲染网页，这其中可能需要Browser进程获取资源和需要GPU进程来帮助渲染</li>
+<li>(2)可能会有JS线程操作DOM（这样可能会造成回流并重绘）</li>
+<li>(3)最后Render进程将结果传递给Browser进程</li>
+</ul>
+</li>
+<li>Browser进程接收到结果并将结果绘制出来</li>
+</ol>
+<h4 id="浏览器器内核拿到内容后，渲染步骤："><a href="#浏览器器内核拿到内容后，渲染步骤：" class="headerlink" title="浏览器器内核拿到内容后，渲染步骤："></a>浏览器器内核拿到内容后，渲染步骤：</h4><ol>
+<li>解析html建立dom树</li>
+<li>解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）</li>
+<li>布局render树</li>
+<li>绘制render树（paint），绘制页面像素信息</li>
+<li>浏览器会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上</li>
+</ol>
+<h4 id="JS的运行机制"><a href="#JS的运行机制" class="headerlink" title="JS的运行机制"></a>JS的运行机制</h4><ul>
+<li>JS分为同步任务和异步任务</li>
+<li>同步任务都在主线程上执行，形成一个执行栈</li>
+<li>主线程之外，事件触发线程管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件。</li>
+<li>一旦执行栈中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行。<br><img src="/img/js.png" alt="browser"></li>
+</ul>
+<h4 id="macrotask与microtask"><a href="#macrotask与microtask" class="headerlink" title="macrotask与microtask"></a>macrotask与microtask</h4><pre><code>console.log(&#39;script start&#39;);
+
+setTimeout(function() {
+    console.log(&#39;setTimeout&#39;);
+}, 0);
+
+Promise.resolve().then(function() {
+    console.log(&#39;promise1&#39;);
+}).then(function() {
+    console.log(&#39;promise2&#39;);
+});
+
+console.log(&#39;script end&#39;);
+</code></pre><p>JS中分为两种任务类型：macrotask和microtask，在ECMAScript中，microtask称为jobs，macrotask可称为task</p>
+<p><strong>1.macrotask</strong> ：</p>
+<ul>
+<li>每一个task会从头到尾将这个任务执行完毕，不会执行其它</li>
+<li>浏览器为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染 （task-&gt;渲染-&gt;task-&gt;…）</li>
+<li>主代码块，setTimeout，setInterval等</li>
+</ul>
+<p><strong>2.microtask</strong> ：</p>
+<ul>
+<li>在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）</li>
+<li>Promise，process.nextTick等<br><img src="/img/mic.png" alt="browser"></li>
+</ul>
+<p>下面这个链接详细介绍了宏任务和微任务，有兴趣可以看看。<br><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="noopener">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a></p>
+</p>
+	</div>
+	<div id="busuanzi_container_page_pv"  class="pvcount pagecount">This page total <span class="pvnumber" id="busuanzi_value_site_pv"></span> views</div>
+</article>
+	</div>
+</body>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+	// 注册service worker
+	if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+</script>
+</html>
